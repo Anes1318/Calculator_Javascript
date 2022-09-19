@@ -1,25 +1,28 @@
+
 const inputField = document.querySelector("#input");
 const rezultatField = document.querySelector("#last_input");
-let rez_op,
+let ister = document.querySelector(".ister");
+let zaokruzi = 2,
     last_op,
     rezultat = 0,
     broj;
 inputField.addEventListener("keydown", (e) => {
-    // console.log(e);
+    console.log(e);
+
 
     if (e.key == "+") {
 
         broj = parseFloat(inputField.value);
 
         if (inputField.value == "" || inputField.value == "-" || inputField.value == "*" || inputField.value == "/") {
-            console.log("PRAZNO");
+            console.log("PRAZNO"); // ovo ode ti je da nemore da napises + kad je prazno sve
             e.preventDefault();
         } else if (rezultatField.innerText == "") {
-            console.log("Sabiranje");
+            console.log("Sabiranje"); // ovo ode ti je da ti prvi broj prebaci u rezultat
 
             rezultat = broj;
 
-        } else if (rezultatField.innerText != '' && inputField.value != '') {
+        } else if (rezultatField.innerText != '' && inputField.value != '') { // ovo ode ti je kad "prenosimo operacije"
 
             if (last_op == '-' && !inputField.value.includes('-')) {
                 rezultat -= broj;
@@ -38,10 +41,10 @@ inputField.addEventListener("keydown", (e) => {
 
 
         }
+
         rezultatField.innerText = rezultat + '+';
         inputField.value = "";
-        rez_op = '+';
-        console.log("REZ_OP ", rez_op);
+
         e.preventDefault();
         last_op = "+";
 
@@ -76,10 +79,9 @@ inputField.addEventListener("keydown", (e) => {
                 console.log("MINUS ODUZEO");
             }
         }
+
         rezultatField.innerText = rezultat + '-';
         inputField.value = "";
-        rez_op = '-';
-        console.log("REZ_OP ", rez_op);
         e.preventDefault();
         last_op = "-";
 
@@ -106,8 +108,6 @@ inputField.addEventListener("keydown", (e) => {
 
         rezultatField.innerText = rezultat + '*';
         inputField.value = "";
-        rez_op = '*';
-        console.log("REZ_OP ", rez_op);
         e.preventDefault();
         last_op = '*';
 
@@ -133,8 +133,6 @@ inputField.addEventListener("keydown", (e) => {
 
         rezultatField.innerText = rezultat + '÷';
         inputField.value = "";
-        rez_op = '÷';
-        console.log("REZ_OP ", rez_op);
         e.preventDefault();
         last_op = '÷';
 
@@ -150,13 +148,34 @@ inputField.addEventListener("keydown", (e) => {
         }
     }
     if (e.key == "Enter") {
+
         if (inputField.value == '1318') {
-            inputField.value = 'LIHTOO KAN';
+
+            ister.innerHTML = '<h1>MNOOOOOOOOOOOOOOOOOOGO VOLIM BUREK</h1>';
+
 
         }
 
         if (rezultatField.innerText != '' && inputField.value == '') {
-            inputField.value = rezultatField.innerText.split("+").join("");
+            switch (last_op) {
+                case '+':
+                    inputField.value = rezultatField.innerText.split("+").join("");
+                    break;
+                case '-':
+                    inputField.value = rezultatField.innerText.split("-").join("");
+                    break;
+                case '*':
+                    inputField.value = rezultatField.innerText.split("*").join("");
+                    break;
+                case '÷':
+                    inputField.value = rezultatField.innerText.split("÷").join("");
+                    break;
+
+                default:
+                    break;
+            }
+
+
             rezultatField.innerText = "";
             e.preventDefault();
         } else if (rezultatField.innerText != '' && inputField.value != '') {
@@ -183,8 +202,10 @@ inputField.addEventListener("keydown", (e) => {
                     e.preventDefault();
                     break;
                 case '÷':
+
                     broj = parseFloat(inputField.value);
                     rezultat /= broj;
+                    // rezultat = Math.round(rezultat * 100) / 100; // more sovim da se cini nesto samo polako
                     rezultatField.innerText = '';
                     inputField.value = rezultat;
                     e.preventDefault();
@@ -202,6 +223,7 @@ inputField.addEventListener("keydown", (e) => {
         rezultat = 0;
         rezultatField.innerText = '';
         inputField.value = '';
+        ister.innerText = '';
     }
 });
 

@@ -1,0 +1,39 @@
+html {
+    height: 100vh;
+    background: linear-gradient(to right bottom, blue 25%, red);
+}
+body {
+    padding: 50px;
+}
+.screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    min-height: 150px;
+    word-wrap: break-word;
+    word-break: break-all;
+
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.rezultat {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+.current-broj:focus {
+    outline: none;
+    /* transform: rotate(360deg); */
+    /* transition-duration: 250ms; */
+}
+.current-broj {
+    outline: none;
+    border-radius: 5px;
+    overflow: scroll;
+    text-align: right;
+    color: white;
+    border: 0.5px red solid;
+    background: none;
+    font-size: 1.5rem;
+    min-height: 3rem;
+}

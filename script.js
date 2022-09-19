@@ -150,6 +150,11 @@ inputField.addEventListener("keydown", (e) => {
         }
     }
     if (e.key == "Enter") {
+        if (inputField.value == '1318') {
+            inputField.value = 'LIHTOO KAN';
+
+        }
+
         if (rezultatField.innerText != '' && inputField.value == '') {
             inputField.value = rezultatField.innerText.split("+").join("");
             rezultatField.innerText = "";

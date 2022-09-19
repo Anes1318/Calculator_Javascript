@@ -74,9 +74,18 @@ body {
     outline: none;
     background-color: rgb(0, 47, 255);
 }
-.container-grid > button:hover {
-    background-color: rgb(255, 0, 0, 0.1);
+.span-two:hover {
+    background-image: url(brave_mBtwB4mBxj.png) !important;
+    background-size: 200px 100px, cover !important;
 }
+.span-two {
+    grid-column: span 2;
+}
+.container-grid > button:hover {
+    background-image: url(brave_mBtwB4mBxj.png);
+    background-size: 100px 100px, cover;
+}
+
 /* MAKNE STRELICE SA INPUTA */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {

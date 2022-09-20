@@ -17,7 +17,7 @@ function eskape() {
 }
 
 inputField.addEventListener("keydown", (e) => {
-    console.log(e);
+    // console.log(e);
 
 
     if (e.key == "+") {
@@ -205,40 +205,41 @@ inputField.addEventListener("keydown", (e) => {
             rezultatField.innerText = "";
             e.preventDefault();
         } else if (rezultatField.innerText != '' && inputField.value != '') {
+            broj = parseFloat(inputField.value);
+
             switch (last_op) {
                 case '+':
-                    broj = parseFloat(inputField.value);
+
                     rezultat += broj;
-                    rezultatField.innerText = '';
-                    inputField.value = rezultat;
+
                     e.preventDefault();
                     break;
                 case '-':
-                    broj = parseFloat(inputField.value);
+
                     rezultat -= broj;
-                    rezultatField.innerText = '';
-                    inputField.value = rezultat;
+
                     e.preventDefault();
                     break;
                 case '*':
-                    broj = parseFloat(inputField.value);
+
                     rezultat *= broj;
-                    rezultatField.innerText = '';
-                    inputField.value = rezultat;
+
                     e.preventDefault();
                     break;
                 case '÷':
 
-                    broj = parseFloat(inputField.value);
+
                     rezultat /= broj;
                     // rezultat = Math.round(rezultat * 100) / 100; // more sovim da se cini nesto samo polako
-                    rezultatField.innerText = '';
-                    inputField.value = rezultat;
+
                     e.preventDefault();
                     break;
                 default:
                     break;
             }
+            rezultatField.innerText = '';
+            inputField.value = rezultat;
+
         }
     }
     if (e.key == 'Escape') {

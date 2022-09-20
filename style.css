@@ -69,7 +69,7 @@ body {
     color: white;
     /* border: 1px solid rgb(255, 0, 0); */
     outline: none;
-    background-color: rgb(0, 47, 255);
+    background-color: rgb(0, 50, 255);
 }
 /* .span-two:hover {
     background-image: url(brave_mBtwB4mBxj.png) !important;
@@ -83,14 +83,19 @@ body {
     /* background-image: url(brave_mBtwB4mBxj.png);
     background-size: 100px 100px, cover; */
 }
+.korijen {
+    background-image: url(korijen.png);
+    background-size: 90px 100px;
+    background-repeat: no-repeat;
+}
 
 /* MAKNE STRELICE SA INPUTA */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
     -webkit-appearance: none !important;
     margin: 0 !important;
 }
 
-input[type="number"] {
+input[type='number'] {
     -moz-appearance: textfield !important;
 }

@@ -1,14 +1,15 @@
 
 const inputField = document.querySelector("#input");
 const rezultatField = document.querySelector("#last_input");
-let ister = document.querySelector(".ister");
+
 let zaokruzi = 2,
     last_op,
+    imaMinus = 1,
     rezultat = 0,
     broj;
 
 function eskape() {
-    document.querySelector("html").style.background = 'linear-gradient(to right bottom, blue 30%, rgb(87, 87, 97), red)';
+
     console.log('ESKAPE');
     rezultat = 0;
     rezultatField.innerText = '';
@@ -52,38 +53,58 @@ inputField.addEventListener("keydown", (e) => {
         last_op = "+";
     }
     if (e.key == "-") {
+
+
         broj = parseFloat(inputField.value);
 
 
-        if (inputField.value == '-') {
-            console.log("NEMORE JOS");
+        if (imaMinus == '1' && inputField.value == '') {
+            console.log("MORE NEGATIVNI");
+            imaMinus = 2;
+            console.log(imaMinus);
+
+        } else if (imaMinus == '2' && inputField.value == '') {
+            console.log('NEMORE JOS');
             e.preventDefault();
-        } else if (inputField.value == '') {
-            console.log('MORE NEGATIVNI');
         }
         else if (rezultatField.innerText == '') {
             console.log("ODUZIMANJE");
-
             rezultat = broj;
+            rezultatField.innerText = rezultat + '-';
+            inputField.value = "";
+            e.preventDefault();
+
         } else if (rezultatField.innerText != '' && inputField.value != '') {
             if (last_op == '+') {
-                console.log("MINUS SABRO");
+
                 rezultat += broj;
+                rezultatField.innerText = rezultat + '-';
+                inputField.value = "";
+                console.log("MINUS SABRO");
+                e.preventDefault();
             } else if (last_op == '*') {
+
                 rezultat *= broj;
+                rezultatField.innerText = rezultat + '-';
+                inputField.value = "";
                 console.log("MINUS POMNOZIO");
+                e.preventDefault();
             } else if (last_op == '/') {
                 rezultat /= broj;
+                rezultatField.innerText = rezultat + '-';
+                inputField.value = "";
                 console.log("MINUS PODIJELIO");
+                e.preventDefault();
             } else {
                 rezultat -= broj;
+                rezultatField.innerText = rezultat + '-';
+                inputField.value = "";
                 console.log("MINUS ODUZEO");
+                e.preventDefault();
             }
         }
 
-        rezultatField.innerText = rezultat + '-';
-        inputField.value = "";
-        e.preventDefault();
+
         last_op = "-";
 
     }
@@ -163,9 +184,6 @@ inputField.addEventListener("keydown", (e) => {
         }
     }
     if (e.key == "Enter") {
-        if (inputField.value == '1318') {
-            document.querySelector("html").style.background = 'green';
-        }
         if (rezultatField.innerText != '' && inputField.value == '') {
             switch (last_op) {
                 case '+':

@@ -6,6 +6,15 @@ let zaokruzi = 2,
     last_op,
     rezultat = 0,
     broj;
+
+function eskape() {
+    document.querySelector("html").style.background = 'linear-gradient(to right bottom, blue 30%, rgb(87, 87, 97), red)';
+    console.log('ESKAPE');
+    rezultat = 0;
+    rezultatField.innerText = '';
+    inputField.value = '';
+}
+
 inputField.addEventListener("keydown", (e) => {
     console.log(e);
 
@@ -19,7 +28,6 @@ inputField.addEventListener("keydown", (e) => {
             e.preventDefault();
         } else if (rezultatField.innerText == "") {
             console.log("Sabiranje"); // ovo ode ti je da ti prvi broj prebaci u rezultat
-
             rezultat = broj;
 
         } else if (rezultatField.innerText != '' && inputField.value != '') { // ovo ode ti je kad "prenosimo operacije"
@@ -37,18 +45,11 @@ inputField.addEventListener("keydown", (e) => {
                 rezultat += broj;
                 console.log("PLUS SABRO");
             }
-
-
-
         }
-
         rezultatField.innerText = rezultat + '+';
         inputField.value = "";
-
         e.preventDefault();
         last_op = "+";
-
-
     }
     if (e.key == "-") {
         broj = parseFloat(inputField.value);
@@ -101,8 +102,20 @@ inputField.addEventListener("keydown", (e) => {
         else if (rezultatField.innerText == '') {
             rezultat = broj;
 
-        } else {
-            rezultat *= broj;
+        } else if (rezultatField.innerText != '' && inputField.value != '') {
+            if (last_op == '+') {
+                console.log("PUTA SABRO");
+                rezultat += broj;
+            } else if (last_op == '-') {
+                rezultat -= broj;
+                console.log("PUTA ODUZEO");
+            } else if (last_op == '÷') {
+                rezultat /= broj;
+                console.log("PUTA PODIJELIO");
+            } else {
+                rezultat *= broj;
+                console.log("PUTA POMNOZIO");
+            }
 
         }
 
@@ -121,26 +134,28 @@ inputField.addEventListener("keydown", (e) => {
             e.preventDefault();
         } else if (rezultat.innerText == '' && inputField.value != '') {
             rezultat = broj;
-        }
-
-        else if (rezultatField.innerText == '') {
+        } else if (rezultatField.innerText == '') {
             rezultat = broj;
-
-        } else {
-            rezultat /= broj;
-
+        } else if (rezultatField.innerText != '' && inputField.value != '') {
+            if (last_op == '+') {
+                console.log("PODIJELJENO SABRO");
+                rezultat += broj;
+            } else if (last_op == '-') {
+                rezultat -= broj;
+                console.log("PODIJELJENO ODUZEO");
+            } else if (last_op == '*') {
+                rezultat *= broj;
+                console.log("PODIJELJENO POMNOZIO");
+            } else {
+                rezultat /= broj;
+                console.log("PODIJELJENO PODIJELIO");
+            }
         }
-
         rezultatField.innerText = rezultat + '÷';
         inputField.value = "";
         e.preventDefault();
         last_op = '÷';
-
-
     }
-
-
-
     if (e.key == ".") {
         if (inputField.value.includes(".")) {
             console.log("NEMORE");
@@ -148,14 +163,9 @@ inputField.addEventListener("keydown", (e) => {
         }
     }
     if (e.key == "Enter") {
-
         if (inputField.value == '1318') {
-
-            ister.innerHTML = '<h1>MNOOOOOOOOOOOOOOOOOOGO VOLIM BUREK</h1>';
-
-
+            document.querySelector("html").style.background = 'green';
         }
-
         if (rezultatField.innerText != '' && inputField.value == '') {
             switch (last_op) {
                 case '+':
@@ -174,8 +184,6 @@ inputField.addEventListener("keydown", (e) => {
                 default:
                     break;
             }
-
-
             rezultatField.innerText = "";
             e.preventDefault();
         } else if (rezultatField.innerText != '' && inputField.value != '') {
@@ -213,18 +221,18 @@ inputField.addEventListener("keydown", (e) => {
                 default:
                     break;
             }
-
-
         }
-
     }
     if (e.key == 'Escape') {
-        console.log('ESKAPE');
-        rezultat = 0;
-        rezultatField.innerText = '';
-        inputField.value = '';
-        ister.innerText = '';
+        eskape();
     }
 });
 
 
+
+
+const allClearButton = document.querySelector("[data-all-clear]");
+
+allClearButton.addEventListener('click', () => {
+    eskape();
+});

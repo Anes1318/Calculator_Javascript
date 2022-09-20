@@ -49,13 +49,10 @@ body {
     min-height: 3rem;
 }
 .ister {
+    position: absolute;
+    color: blue;
     font-size: 3rem;
-    color: white;
-    max-width: 100%;
-    word-wrap: break-word;
-    word-break: break-all;
 }
-
 /* DUGMAT */
 
 .container-grid {
@@ -70,20 +67,21 @@ body {
     cursor: pointer;
     font-size: 2rem;
     color: white;
-    border: 1px solid rgb(255, 0, 0);
+    /* border: 1px solid rgb(255, 0, 0); */
     outline: none;
     background-color: rgb(0, 47, 255);
 }
-.span-two:hover {
+/* .span-two:hover {
     background-image: url(brave_mBtwB4mBxj.png) !important;
     background-size: 200px 100px, cover !important;
-}
+} */
 .span-two {
     grid-column: span 2;
 }
 .container-grid > button:hover {
-    background-image: url(brave_mBtwB4mBxj.png);
-    background-size: 100px 100px, cover;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* background-image: url(brave_mBtwB4mBxj.png);
+    background-size: 100px 100px, cover; */
 }
 
 /* MAKNE STRELICE SA INPUTA */

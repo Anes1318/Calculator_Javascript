@@ -1,12 +1,56 @@
 
 const inputField = document.querySelector("#input");
 const rezultatField = document.querySelector("#last_input");
+const allClearButton = document.querySelector("[data-all-clear]");
+const brojevibuttons = document.querySelectorAll("[data-number]");
+const operacije = document.querySelectorAll("[data-operation]");
+const jednakoDugme = document.querySelector("[data-jednako]");
+
+
 
 let zaokruzi = 2,
     last_op,
     imaMinus = 1,
     rezultat = 0,
     broj;
+
+operacije.forEach(dugme => {
+    dugme.addEventListener('click', () => {
+        switch (dugme.innerText) {
+            case '-':
+
+                inputField.dispatchEvent(new KeyboardEvent('keydown', { 'key': '-' }));
+                break;
+            case '+':
+                inputField.dispatchEvent(new KeyboardEvent('keydown', { 'key': '+' }));
+                break;
+            case '*':
+                inputField.dispatchEvent(new KeyboardEvent('keydown', { 'key': '*' }));
+                break;
+            case '÷':
+                inputField.dispatchEvent(new KeyboardEvent('keydown', { 'key': '/' }));
+                break;
+
+
+            default:
+                break;
+        }
+
+    })
+});
+
+
+
+brojevibuttons.forEach(dugme => {
+    dugme.addEventListener('click', () => {
+        inputField.value += dugme.innerText;
+    })
+});
+
+
+jednakoDugme.addEventListener('click', () => {
+    inputField.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }));
+})
 
 function eskape() {
 
@@ -16,12 +60,17 @@ function eskape() {
     inputField.value = '';
 }
 
+allClearButton.addEventListener('click', () => {
+    eskape();
+});
+
+
 inputField.addEventListener("keydown", (e) => {
-    // console.log(e);
+    console.log(e);
 
 
     if (e.key == "+") {
-
+        console.log(last_op);
         broj = parseFloat(inputField.value);
 
         if (inputField.value == "" || inputField.value == "-" || inputField.value == "*" || inputField.value == "/") {
@@ -39,7 +88,7 @@ inputField.addEventListener("keydown", (e) => {
             } else if (last_op == '*') {
                 rezultat *= broj;
                 console.log("PLUS POMNOZIO");
-            } else if (last_op == '/') {
+            } else if (last_op == '÷') {
                 rezultat /= broj;
                 console.log("PLUS PODIJELIO");
             } else {
@@ -89,7 +138,7 @@ inputField.addEventListener("keydown", (e) => {
                 inputField.value = "";
                 console.log("MINUS POMNOZIO");
                 e.preventDefault();
-            } else if (last_op == '/') {
+            } else if (last_op == '÷') {
                 rezultat /= broj;
                 rezultatField.innerText = rezultat + '-';
                 inputField.value = "";
@@ -184,6 +233,7 @@ inputField.addEventListener("keydown", (e) => {
         }
     }
     if (e.key == "Enter") {
+        console.log("EMTER");
         if (rezultatField.innerText != '' && inputField.value == '') {
             switch (last_op) {
                 case '+':
@@ -250,8 +300,5 @@ inputField.addEventListener("keydown", (e) => {
 
 
 
-const allClearButton = document.querySelector("[data-all-clear]");
 
-allClearButton.addEventListener('click', () => {
-    eskape();
-});
+

@@ -88,7 +88,7 @@ operacije.forEach(dugme => {
                     return;
                 }
 
-                else if (rezultatField.innerText == '' && inputField.innerText.includes(broj)) {
+                else if (rezultatField.innerText == '' && inputField.innerText != '' && inputField.innerText != '.' && inputField.innerText != '-') {
                     console.log('prebacavamo broj u rezultat');
                     rezultat = broj;
                     rezultatField.innerText = rezultat + '-';
@@ -127,22 +127,52 @@ operacije.forEach(dugme => {
 
                 last_op = '-';
                 break;
+
+
             case '+':
-                last_op = '+';
-                if (inputField.innerText == '' || inputField.innerText == '-') {
+
+                if ((inputField.innerText == '' || inputField.innerText == '-') && rezultatField.innerText == '') {
                     console.log('NEMORE');
                     return;
-                }
+                } else if (rezultatField.innerText == '' && inputField.innerText != '' && inputField.innerText != '.' && inputField.innerText != '-') {
+                    console.log('prebacavamo broj u rezultat');
+                    rezultat = broj;
 
-                if (rezultatField.innerText != '' && inputField.innerText == '') {
-                    console.log('MIJENJAMO');
+                } else if (inputField.innerText == '' && rezultatField.innerText != '') {
                     rezultatField.innerText = rezultat + '+';
-                    return;
                 }
 
-                rezultat += broj;
+
+                else if (rezultatField.innerText != '' && inputField.value != '') {
+
+                    if (last_op == '-') {
+                        rezultat -= broj;
+
+                        console.log("PLUS ODUZEO");
+
+                    } else if (last_op == '*') {
+
+                        rezultat *= broj;
+
+                        console.log("PLUS POMNOZIO");
+
+                    } else if (last_op == '÷') {
+                        rezultat /= broj;
+
+                        console.log("PLUS PODIJELIO");
+
+                    } else {
+                        rezultat += broj;
+
+                        console.log("PLUS SABRO");
+
+                    }
+
+                }
                 rezultatField.innerText = rezultat + '+';
                 inputField.innerText = '';
+
+                last_op = '+';
                 break;
             case '*':
                 last_op = '*';
@@ -197,7 +227,7 @@ allClearButton.addEventListener('click', () => {
 
 
 body.addEventListener("keydown", (e) => {
-    console.log(e);
+    // console.log(e);
     // if (e.key == "+") {
     //     console.log(last_op);
     //     broj = parseFloat(inputField.value);

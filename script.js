@@ -96,7 +96,7 @@ operacije.forEach(dugme => {
                 }
 
 
-                else if (rezultatField.innerText != '' && inputField.value != '') {
+                else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '.') {
 
                     if (last_op == '+') {
                         rezultat += broj;
@@ -143,7 +143,7 @@ operacije.forEach(dugme => {
                 }
 
 
-                else if (rezultatField.innerText != '' && inputField.value != '') {
+                else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') {
 
                     if (last_op == '-') {
                         rezultat -= broj;

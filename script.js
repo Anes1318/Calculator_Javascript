@@ -14,7 +14,6 @@ let last_op, imaMinus = 1, rezultat = 0, broj, brojDecimala = 5;
 function DEL() {
     inputField.innerText = inputField.innerText.toString().slice(0, -1);
 }
-
 function jednakoFunkcija() {
     if (inputField.innerText == '') {
         if (rezultatField.innerText == '') {
@@ -63,7 +62,13 @@ function jednakoFunkcija() {
 
 }
 function pritisnuoBroj(dugme) {
-    inputField.innerText += dugme.innerText;
+    if (inputField.innerText == '0') {
+        inputField.innerText = dugme.innerText;
+    } else {
+        inputField.innerText += dugme.innerText;
+    }
+
+
     broj = inputField.innerText;
     broj = parseFloat(broj);
 
@@ -136,6 +141,7 @@ function pritisnuoPlus(dugme) {
         rezultat = broj;
 
     } else if (inputField.innerText == '' && rezultatField.innerText != '') {
+        console.log('mijenjamo operaciju');
         rezultatField.innerText = rezultat + '+';
     }
 
@@ -177,7 +183,6 @@ function pritisnuoPlus(dugme) {
 brojevibuttons.forEach(dugme => {
     dugme.addEventListener('click', () => {
         pritisnuoBroj(dugme);
-
     })
 });
 
@@ -203,7 +208,34 @@ operacije.forEach(dugme => {
                     rezultat = broj;
                     rezultatField.innerText = rezultat + '*';
                     inputField.innerText = '';
+                } else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') {
+
+                    if (last_op == '-') {
+                        rezultat -= broj;
+
+                        console.log("PUTA ODUZEO");
+
+                    } else if (last_op == '+') {
+
+                        rezultat += broj;
+
+                        console.log("PUTA SABRO");
+
+                    } else if (last_op == '÷') {
+                        rezultat /= broj;
+
+                        console.log("PUTA PODIJELIO");
+
+                    } else {
+                        rezultat *= broj;
+
+                        console.log("PUTA POMNOZIO");
+
+                    }
                 }
+
+                rezultatField.innerText = rezultat + '*';
+                inputField.innerText = '';
 
                 last_op = '*';
                 console.log('puta');

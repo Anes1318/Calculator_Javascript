@@ -8,11 +8,17 @@ const jednakoDugme = document.querySelector("[data-jednako]");
 const tackaDugme = document.querySelector("[data-tacka]");
 const delDugme = document.querySelector("[data-del]");
 
-let last_op, imaMinus = 1, rezultat = 0, broj, brojDecimala = 5;
+let last_op, imaMinus = 1, rezultat = 0, broj, brojDecimala = 2;
 
-
+function eskape() {
+    console.log('ESKAPE');
+    rezultat = 0;
+    rezultatField.innerText = '';
+    inputField.innerText = '';
+}
 function DEL() {
     inputField.innerText = inputField.innerText.toString().slice(0, -1);
+    console.log("IZBRISAT ZADNJI");
 }
 function jednakoFunkcija() {
     if (inputField.innerText == '') {
@@ -25,39 +31,93 @@ function jednakoFunkcija() {
         console.log("JEDNAKO");
         return;
     }
-    switch (last_op) {
-        case '+':
-            rezultat += broj;
-            rezultatField.innerText = '';
-            rezultat = rezultat.toFixed(brojDecimala)
-            inputField.innerText = rezultat;
-            console.log("JEDNAKO_SABRO");
-            break;
-        case '-':
-            rezultat -= broj;
-            rezultatField.innerText = '';
-            rezultat = rezultat.toFixed(brojDecimala)
+    console.log("ZADNJA OPERACIJA", last_op);
+    if (inputField.innerText != '' && rezultatField.innerText == '') {
+        console.log('hashirama');
+        switch (last_op) {
+            case '+':
+                rezultat += zadnji_broj;
+                console.log("PROSO");
+                rezultatField.innerText = '';
+                // rezultat = rezultat.toFixed(brojDecimala)
+                inputField.innerText = rezultat;
 
-            inputField.innerText = rezultat;
+                console.log("JEDNAKO SABRO");
+                break;
+            case '-':
+                rezultat -= zadnji_broj;
+                rezultatField.innerText = '';
+                // rezultat = rezultat.toFixed(brojDecimala)
+                inputField.innerText = rezultat;
 
-            console.log("JEDNAKO_ODUZEO");
-            break;
-        case '*':
-            rezultat *= broj;
-            rezultatField.innerText = '';
-            rezultat = rezultat.toFixed(brojDecimala)
-            inputField.innerText = rezultat;
-            console.log("JEDNAKO_POMNOZIO");
-            break;
-        case '÷':
-            rezultat /= broj;
-            rezultatField.innerText = '';
-            rezultat = rezultat.toFixed(brojDecimala)
-            inputField.innerText = rezultat;
-            console.log("JEDNAKO_PODIJELIO");
-            break;
-        default:
-            break;
+                console.log("JEDNAKO ODUZEO");
+                break;
+            case '*':
+                rezultat *= zadnji_broj;
+                rezultatField.innerText = '';
+                // rezultat = rezultat.toFixed(brojDecimala)
+                inputField.innerText = rezultat;
+
+
+                console.log("JEDNAKO POMNOZIO");
+                break;
+            case '÷':
+                rezultat /= zadnji_broj;
+                rezultatField.innerText = '';
+                // rezultat = rezultat.toFixed(brojDecimala)
+                inputField.innerText = rezultat;
+
+
+                console.log("JEDNAKO PODIJELIO");
+                break;
+            default:
+                break;
+        }
+    } else {
+
+
+        switch (last_op) {
+            case '+':
+                rezultat += broj;
+                rezultatField.innerText = '';
+                // rezultat = rezultat.toFixed(brojDecimala)
+                inputField.innerText = rezultat;
+                zadnji_broj = broj;
+                broj = rezultat;
+                console.log("JEDNAKO SABRO");
+                break;
+            case '-':
+                rezultat -= broj;
+                rezultatField.innerText = '';
+                // rezultat = rezultat.toFixed(brojDecimala)
+                inputField.innerText = rezultat;
+                zadnji_broj = broj;
+                broj = rezultat;
+                console.log("JEDNAKO ODUZEO");
+                break;
+            case '*':
+                rezultat *= broj;
+                rezultatField.innerText = '';
+                // rezultat = rezultat.toFixed(brojDecimala)
+                inputField.innerText = rezultat;
+                zadnji_broj = broj;
+                broj = rezultat;
+
+                console.log("JEDNAKO POMNOZIO");
+                break;
+            case '÷':
+                rezultat /= broj;
+                rezultatField.innerText = '';
+                // rezultat = rezultat.toFixed(brojDecimala)
+                inputField.innerText = rezultat;
+                zadnji_broj = broj;
+                broj = rezultat;
+
+                console.log("JEDNAKO PODIJELIO");
+                break;
+            default:
+                break;
+        }
     }
 
 }
@@ -68,9 +128,9 @@ function pritisnuoBroj(dugme) {
         inputField.innerText += dugme.innerText;
     }
 
-
     broj = inputField.innerText;
     broj = parseFloat(broj);
+
 
     if (inputField.innerText.includes('-')) {
         console.log("PITA");
@@ -79,6 +139,8 @@ function pritisnuoBroj(dugme) {
     dugme.blur();
 }
 function pritisnuoMinus(dugme) {
+    broj = inputField.innerText;
+    broj = parseFloat(broj);
     if (inputField.innerText == '') {
         console.log('MORE NEGATIVNI');
         inputField.innerText += '-';
@@ -131,8 +193,10 @@ function pritisnuoMinus(dugme) {
     dugme.blur();
 }
 function pritisnuoPlus(dugme) {
-    if ((inputField.innerText == '' || inputField.innerText == '-') && rezultatField.innerText == '') {
-        console.log('NEMORE');
+    broj = inputField.innerText;
+    broj = parseFloat(broj);
+    if ((inputField.innerText == '' || inputField.innerText == '.' || inputField.innerText == '-') && rezultatField.innerText == '') {
+        console.log('NEMORE PLUS');
         dugme.blur();
 
         return;
@@ -178,7 +242,72 @@ function pritisnuoPlus(dugme) {
     last_op = '+';
     dugme.blur();
 }
+function pritisnuoPuta(dugme) {
+    broj = inputField.innerText;
+    broj = parseFloat(broj);
+    if ((inputField.innerText == '' || inputField.innerText == '.' || inputField.innerText == '-') && rezultatField.innerText == '') {
+        console.log("NEMORE PUTA");
+        return;
+        dugme.blur();
+    }
+    else if (rezultatField.innerText == '' && inputField.innerText != '-' && inputField.innerText != '.') {
+        rezultat = broj;
+        rezultatField.innerText = rezultat + '*';
+        inputField.innerText = '';
+    } else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') {
+        if (last_op == '-') {
+            rezultat -= broj;
+            console.log("PUTA ODUZEO");
+        } else if (last_op == '+') {
+            rezultat += broj;
+            console.log("PUTA SABRO");
+        } else if (last_op == '÷') {
+            rezultat /= broj;
+            console.log("PUTA PODIJELIO");
 
+        } else {
+            rezultat *= broj;
+            console.log("PUTA POMNOZIO");
+        }
+    }
+    rezultatField.innerText = rezultat + '*';
+    inputField.innerText = '';
+    last_op = '*';
+    console.log('puta');
+}
+function pritisnuoPodijeljeno(dugme) {
+    broj = inputField.innerText;
+    broj = parseFloat(broj);
+    if ((inputField.innerText == '' || inputField.innerText == '.' || inputField.innerText == '-') && rezultatField.innerText == '') {
+        console.log("NEMORE PODIJELJENO");
+        return;
+        dugme.blur();
+    }
+    else if (rezultatField.innerText == '' && inputField.innerText != '-' && inputField.innerText != '.') {
+        rezultat = broj;
+        rezultatField.innerText = rezultat + '÷';
+        inputField.innerText = '';
+    } else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') {
+        if (last_op == '-') {
+            rezultat -= broj;
+            console.log("PODIJELJENO ODUZEO");
+        } else if (last_op == '+') {
+            rezultat += broj;
+            console.log("PODIJELJENO SABRO");
+        } else if (last_op == '*') {
+            rezultat *= broj;
+            console.log("PODIJELJENO POMNOZIO");
+
+        } else {
+            rezultat /= broj;
+            console.log("PODIJELJENO PODIJELIO");
+        }
+    }
+    rezultatField.innerText = rezultat + '÷';
+    inputField.innerText = '';
+    last_op = '÷';
+    console.log('podijeljeno');
+}
 
 brojevibuttons.forEach(dugme => {
     dugme.addEventListener('click', () => {
@@ -197,54 +326,15 @@ operacije.forEach(dugme => {
             case '-':
                 pritisnuoMinus(dugme);
                 break;
-
             case '+':
                 pritisnuoPlus(dugme);
                 break;
-
             case '*':
-
-                if (rezultatField.innerText == '' && inputField.innerText != '-' && inputField.innerText != '.') {
-                    rezultat = broj;
-                    rezultatField.innerText = rezultat + '*';
-                    inputField.innerText = '';
-                } else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') {
-
-                    if (last_op == '-') {
-                        rezultat -= broj;
-
-                        console.log("PUTA ODUZEO");
-
-                    } else if (last_op == '+') {
-
-                        rezultat += broj;
-
-                        console.log("PUTA SABRO");
-
-                    } else if (last_op == '÷') {
-                        rezultat /= broj;
-
-                        console.log("PUTA PODIJELIO");
-
-                    } else {
-                        rezultat *= broj;
-
-                        console.log("PUTA POMNOZIO");
-
-                    }
-                }
-
-                rezultatField.innerText = rezultat + '*';
-                inputField.innerText = '';
-
-                last_op = '*';
-                console.log('puta');
+                pritisnuoPuta(dugme);
                 break;
             case '÷':
-                last_op = '÷';
-                console.log('podijeljeno');
+                pritisnuoPodijeljeno(dugme);
                 break;
-
             default:
                 break;
         }
@@ -264,31 +354,21 @@ tackaDugme.addEventListener('click', () => {
 
 
 });
-
-
-
-
 jednakoDugme.addEventListener('click', () => {
-    // console.log(last_op);
     jednakoFunkcija();
-
-
-})
-
-function eskape() {
-
-    console.log('ESKAPE');
-    rezultat = 0;
-    rezultatField.innerText = '';
-    inputField.innerText = '';
-}
+});
 
 allClearButton.addEventListener('click', () => {
     eskape();
 });
 
 
+
+
+
+
 body.addEventListener("keydown", (e) => {
+
     // console.log(e);
     // if (e.key == "+") {
     //     console.log(last_op);

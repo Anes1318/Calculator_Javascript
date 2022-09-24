@@ -7,8 +7,26 @@ const operacije = document.querySelectorAll("[data-operation]");
 const jednakoDugme = document.querySelector("[data-jednako]");
 const tackaDugme = document.querySelector("[data-tacka]");
 const delDugme = document.querySelector("[data-del]");
+const brojDecimalaField = document.querySelector(".broj-decimala");
+const poruka = document.querySelector(".eror");
 
-let last_op, imaMinus = 1, rezultat = 0, broj, brojDecimala = 2;
+let last_op, imaMinus = 1, rezultat = 0, broj, brojDecimala = 1;
+
+brojDecimalaField.innerText = brojDecimala;
+
+function povecaj() {
+    brojDecimala++;
+    brojDecimalaField.innerText = brojDecimala;
+}
+function smanji() {
+    if (brojDecimala == 1) {
+
+        alert("Broj decimala ne moze biti manji od 1!");
+        return;
+    }
+    brojDecimala--;
+    brojDecimalaField.innerText = brojDecimala;
+}
 
 function eskape() {
     console.log('ESKAPE');
@@ -16,6 +34,7 @@ function eskape() {
     broj = 0;
     rezultatField.innerText = '';
     inputField.innerText = '';
+    allClearButton.blur();
 }
 function DEL() {
     inputField.innerText = inputField.innerText.toString().slice(0, -1);
@@ -120,7 +139,7 @@ function jednakoFunkcija() {
                 break;
             case '÷':
                 if (broj == '0') {
-                    alert('NEMORE SA SNULU');
+                    alert('Ne mozete dijeliti sa nulom!');
                     inputField.innerText = '';
                     return;
                 }
@@ -195,7 +214,7 @@ function pritisnuoMinus(dugme) {
 
         } else if (last_op == '÷') {
             if (broj == '0') {
-                alert('NEMORE SA SNULU');
+                alert('Ne mozete dijeliti sa nulom!');
                 inputField.innerText = '';
                 return;
             }
@@ -245,7 +264,7 @@ function pritisnuoPlus(dugme) {
             console.log("PLUS POMNOZIO");
         } else if (last_op == '÷') {
             if (broj == '0') {
-                alert('NEMORE SA SNULU');
+                alert('Ne mozete dijeliti sa nulom!');
                 inputField.innerText = '';
                 return;
             }
@@ -287,7 +306,7 @@ function pritisnuoPuta(dugme) {
             console.log("PUTA SABRO");
         } else if (last_op == '÷') {
             if (broj == '0') {
-                alert('NEMORE SA SNULU');
+                alert('Ne mozete dijeliti sa nulom!');
                 inputField.innerText = '';
                 return;
             }
@@ -329,7 +348,7 @@ function pritisnuoPodijeljeno(dugme) {
 
         } else {
             if (broj == '0') {
-                alert('NEMORE SA SNULU');
+                alert('Ne mozete dijeliti sa nulom!');
                 inputField.innerText = '';
                 return;
             }
@@ -454,8 +473,6 @@ allClearButton.addEventListener('click', () => {
 body.addEventListener("keydown", (e) => {
     checkKeyboard(e);
 });
-
-
 
 
 

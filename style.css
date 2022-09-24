@@ -7,7 +7,7 @@
 }
 html {
     background-color: black;
-    height: 100vh;
+    /* height: 100vh; */
     /* background-image: url(brave_mBtwB4mBxj.png);
     background-repeat: no-repeat;
     background-size: 100vw 100vh; */
@@ -16,6 +16,7 @@ body {
     padding: 0;
     margin: 0;
 }
+
 .screen {
     border-radius: 20px 20px 0 0;
     margin-left: 2px;
@@ -50,13 +51,62 @@ body {
     font-size: 2.5rem;
 }
 
+.decimale-container {
+    text-align: center;
+    color: black;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+.ar-up:hover {
+    cursor: pointer;
+}
+
+.ar-up {
+    background: rgb(139, 179, 255);
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+    /* border: 1px greenyellow solid; */
+    width: fit-content;
+    margin-left: 44%;
+}
+
+.Dtitle {
+    color: white;
+}
+.broj-decimala {
+    margin-left: 45%;
+    background: rgb(139, 179, 255);
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+    /* border: 1px greenyellow solid; */
+    width: fit-content;
+}
+
+.ar-down {
+    background: rgb(139, 179, 255);
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+    /* border: 1px greenyellow solid; */
+    width: fit-content;
+    margin-left: 44%;
+}
+
+.ar-down:hover {
+    cursor: pointer;
+}
+.eror {
+    color: red;
+    font-size: 3rem;
+}
+
 /* DUGMAT */
 
 .container-grid {
     display: grid;
     justify-content: center;
     align-content: center;
-    min-height: 100vh;
+    margin-top: 5vh;
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }

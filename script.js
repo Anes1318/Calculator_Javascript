@@ -122,8 +122,7 @@ function jednakoFunkcija() {
 
 
 
-    } else {
-
+    } else if (inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') {
         switch (last_op) {
             case '+':
                 rezultat = parseFloat(rezultat);

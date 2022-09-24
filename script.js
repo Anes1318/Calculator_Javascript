@@ -203,11 +203,11 @@ function pritisnuoMinus(dugme) {
     if (inputField.innerText == '') {
         console.log('MORE NEGATIVNI');
         inputField.innerText += '-';
-        dugme.blur();
+        // dugme.blur();
         return;
     } else if (inputField.innerText == '-') {
         console.log('NEMORE MINUS');
-        dugme.blur();
+        // dugme.blur();
         return;
     }
 
@@ -252,7 +252,7 @@ function pritisnuoMinus(dugme) {
 
 
     last_op = '-';
-    dugme.blur();
+    // dugme.blur();
 }
 function pritisnuoPlus(dugme) {
     broj = inputField.innerText;

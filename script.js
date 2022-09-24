@@ -13,6 +13,7 @@ let last_op, imaMinus = 1, rezultat = 0, broj, brojDecimala = 2;
 function eskape() {
     console.log('ESKAPE');
     rezultat = 0;
+    broj = 0;
     rezultatField.innerText = '';
     inputField.innerText = '';
 }
@@ -25,7 +26,6 @@ function jednakoFunkcija() {
         if (rezultatField.innerText == '') {
             return;
         }
-
         inputField.innerText = rezultat;
         rezultatField.innerText = '';
         console.log("JEDNAKO");
@@ -34,81 +34,101 @@ function jednakoFunkcija() {
     console.log("ZADNJA OPERACIJA", last_op);
     if (inputField.innerText != '' && rezultatField.innerText == '') {
         console.log('hashirama');
+
         switch (last_op) {
             case '+':
+                rezultat = parseFloat(rezultat);
                 rezultat += zadnji_broj;
-                console.log("PROSO");
-                rezultatField.innerText = '';
-                // rezultat = rezultat.toFixed(brojDecimala)
-                inputField.innerText = rezultat;
+                rezultat = parseFloat(rezultat).toFixed(brojDecimala);
 
-                console.log("JEDNAKO SABRO");
+
+                rezultatField.innerText = '';
+                inputField.innerText = rezultat;
+                console.log("JEDNAKO SABRO JOPE");
                 break;
             case '-':
+                rezultat = parseFloat(rezultat);
                 rezultat -= zadnji_broj;
-                rezultatField.innerText = '';
-                // rezultat = rezultat.toFixed(brojDecimala)
-                inputField.innerText = rezultat;
+                rezultat = parseFloat(rezultat).toFixed(brojDecimala);
 
-                console.log("JEDNAKO ODUZEO");
+
+                rezultatField.innerText = '';
+                inputField.innerText = rezultat;
+                console.log("JEDNAKO ODUZEO JOPE");
                 break;
             case '*':
+                rezultat = parseFloat(rezultat);
                 rezultat *= zadnji_broj;
+                rezultat = parseFloat(rezultat).toFixed(brojDecimala);
+
+
                 rezultatField.innerText = '';
-                // rezultat = rezultat.toFixed(brojDecimala)
                 inputField.innerText = rezultat;
-
-
-                console.log("JEDNAKO POMNOZIO");
+                console.log("JEDNAKO POMNOZIO JOPE");
                 break;
             case '÷':
+
+                rezultat = parseFloat(rezultat);
                 rezultat /= zadnji_broj;
+                rezultat = parseFloat(rezultat).toFixed(brojDecimala);
+
                 rezultatField.innerText = '';
-                // rezultat = rezultat.toFixed(brojDecimala)
                 inputField.innerText = rezultat;
-
-
-                console.log("JEDNAKO PODIJELIO");
+                console.log("JEDNAKO PITE JOPE");
                 break;
             default:
                 break;
         }
-    } else {
 
+
+
+    } else {
 
         switch (last_op) {
             case '+':
+                rezultat = parseFloat(rezultat);
                 rezultat += broj;
+                rezultat = parseFloat(rezultat).toFixed(brojDecimala);
+
                 rezultatField.innerText = '';
-                // rezultat = rezultat.toFixed(brojDecimala)
                 inputField.innerText = rezultat;
                 zadnji_broj = broj;
                 broj = rezultat;
                 console.log("JEDNAKO SABRO");
                 break;
             case '-':
+                rezultat = parseFloat(rezultat);
                 rezultat -= broj;
+                rezultat = parseFloat(rezultat).toFixed(brojDecimala);
+
                 rezultatField.innerText = '';
-                // rezultat = rezultat.toFixed(brojDecimala)
                 inputField.innerText = rezultat;
                 zadnji_broj = broj;
                 broj = rezultat;
                 console.log("JEDNAKO ODUZEO");
                 break;
             case '*':
+                rezultat = parseFloat(rezultat);
                 rezultat *= broj;
+                rezultat = parseFloat(rezultat).toFixed(brojDecimala);
+
                 rezultatField.innerText = '';
-                // rezultat = rezultat.toFixed(brojDecimala)
                 inputField.innerText = rezultat;
                 zadnji_broj = broj;
                 broj = rezultat;
-
                 console.log("JEDNAKO POMNOZIO");
                 break;
             case '÷':
+                if (broj == '0') {
+                    alert('NEMORE SA SNULU');
+                    inputField.innerText = '';
+                    return;
+                }
+                rezultat = parseFloat(rezultat);
                 rezultat /= broj;
+                rezultat = parseFloat(rezultat).toFixed(brojDecimala);
+
                 rezultatField.innerText = '';
-                // rezultat = rezultat.toFixed(brojDecimala)
                 inputField.innerText = rezultat;
                 zadnji_broj = broj;
                 broj = rezultat;
@@ -174,8 +194,12 @@ function pritisnuoMinus(dugme) {
             console.log("MINUS POMNOZIO");
 
         } else if (last_op == '÷') {
+            if (broj == '0') {
+                alert('NEMORE SA SNULU');
+                inputField.innerText = '';
+                return;
+            }
             rezultat /= broj;
-
             console.log("MINUS PODIJELIO");
 
         } else {
@@ -213,19 +237,19 @@ function pritisnuoPlus(dugme) {
     else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') {
 
         if (last_op == '-') {
+
             rezultat -= broj;
-
             console.log("PLUS ODUZEO");
-
         } else if (last_op == '*') {
-
             rezultat *= broj;
-
             console.log("PLUS POMNOZIO");
-
         } else if (last_op == '÷') {
+            if (broj == '0') {
+                alert('NEMORE SA SNULU');
+                inputField.innerText = '';
+                return;
+            }
             rezultat /= broj;
-
             console.log("PLUS PODIJELIO");
 
         } else {
@@ -262,6 +286,11 @@ function pritisnuoPuta(dugme) {
             rezultat += broj;
             console.log("PUTA SABRO");
         } else if (last_op == '÷') {
+            if (broj == '0') {
+                alert('NEMORE SA SNULU');
+                inputField.innerText = '';
+                return;
+            }
             rezultat /= broj;
             console.log("PUTA PODIJELIO");
 
@@ -299,6 +328,12 @@ function pritisnuoPodijeljeno(dugme) {
             console.log("PODIJELJENO POMNOZIO");
 
         } else {
+            if (broj == '0') {
+                alert('NEMORE SA SNULU');
+                inputField.innerText = '';
+                return;
+            }
+
             rezultat /= broj;
             console.log("PODIJELJENO PODIJELIO");
         }
@@ -307,6 +342,69 @@ function pritisnuoPodijeljeno(dugme) {
     inputField.innerText = '';
     last_op = '÷';
     console.log('podijeljeno');
+}
+function pritisnuoTacku() {
+
+    if (inputField.innerText.includes('.') || inputField.innerText == '-') {
+        return;
+    }
+    inputField.innerText += '.';
+}
+function checkKeyboard(e) {
+    if (e.key == '0') {
+        document.querySelector("#nula").click();
+    }
+    if (e.key == '1') {
+        document.querySelector("#jedan").click();
+    }
+    if (e.key == '2') {
+        document.querySelector("#dva").click();
+    }
+    if (e.key == '3') {
+        document.querySelector("#tri").click();
+    }
+    if (e.key == '4') {
+        document.querySelector("#cetiri").click();
+    }
+    if (e.key == '5') {
+        document.querySelector("#pet").click();
+    }
+    if (e.key == '6') {
+        document.querySelector("#ses").click();
+    }
+    if (e.key == '7') {
+        document.querySelector("#sedam").click();
+    }
+    if (e.key == '8') {
+        document.querySelector("#osam").click();
+    }
+    if (e.key == '9') {
+        document.querySelector("#devet").click();
+    }
+    if (e.key == 'Backspace') {
+        DEL();
+    }
+    if (e.key == '.') {
+        pritisnuoTacku();
+    }
+    if (e.key == '+') {
+        document.querySelector("#plus").click();
+    }
+    if (e.key == '-') {
+        document.querySelector("#minus").click();
+    }
+    if (e.key == '*') {
+        document.querySelector("#puta").click();
+    }
+    if (e.key == '/') {
+        document.querySelector("#podijeljeno").click();
+    }
+    if (e.key == "Enter") {
+        jednakoFunkcija();
+    }
+    if (e.key == 'Escape') {
+        eskape();
+    }
 }
 
 brojevibuttons.forEach(dugme => {
@@ -345,200 +443,16 @@ operacije.forEach(dugme => {
 });
 
 tackaDugme.addEventListener('click', () => {
-
-    if (inputField.innerText.includes('.') || inputField.innerText == '-') {
-        return;
-    }
-    inputField.innerText += '.';
-
-
-
+    pritisnuoTacku();
 });
 jednakoDugme.addEventListener('click', () => {
     jednakoFunkcija();
 });
-
 allClearButton.addEventListener('click', () => {
     eskape();
 });
-
-
-
-
-
-
 body.addEventListener("keydown", (e) => {
-
-    // console.log(e);
-    // if (e.key == "+") {
-    //     console.log(last_op);
-    //     broj = parseFloat(inputField.value);
-
-    //     if (inputField.value == "" || inputField.value == "-" || inputField.value == "*" || inputField.value == "/") {
-    //         console.log("PRAZNO"); // ovo ode ti je da nemore da napises + kad je prazno sve
-    //         e.preventDefault();
-    //     } else if (rezultatField.innerText == "") {
-    //         console.log("Sabiranje"); // ovo ode ti je da ti prvi broj prebaci u rezultat
-    //         rezultat = broj;
-
-    //     } else if (rezultatField.innerText != '' && inputField.value != '') { // ovo ode ti je kad "prenosimo operacije"
-
-    //         if (last_op == '-' && !inputField.value.includes('-')) {
-    //             rezultat -= broj;
-    //             console.log("PLUS ODUZEO");
-    //         } else if (last_op == '*') {
-    //             rezultat *= broj;
-    //             console.log("PLUS POMNOZIO");
-    //         } else if (last_op == '÷') {
-    //             rezultat /= broj;
-    //             console.log("PLUS PODIJELIO");
-    //         } else {
-    //             rezultat += broj;
-    //             console.log("PLUS SABRO");
-    //         }
-    //     }
-    //     rezultatField.innerText = rezultat + '+';
-    //     inputField.value = "";
-    //     e.preventDefault();
-    //     last_op = "+";
-    // }
-    // if (e.key == "-") {
-
-
-    //     broj = parseFloat(inputField.value);
-
-
-    //     if (imaMinus == '1' && inputField.value == '') {
-    //         console.log("MORE NEGATIVNI");
-    //         imaMinus = 2;
-    //         console.log(imaMinus);
-
-    //     } else if (imaMinus == '2' && inputField.value == '') {
-    //         console.log('NEMORE JOS');
-    //         e.preventDefault();
-    //     }
-    //     else if (rezultatField.innerText == '') {
-    //         console.log("ODUZIMANJE");
-    //         rezultat = broj;
-    //         rezultatField.innerText = rezultat + '-';
-    //         inputField.value = "";
-    //         e.preventDefault();
-
-    //     } else if (rezultatField.innerText != '' && inputField.value != '') {
-    //         if (last_op == '+') {
-
-    //             rezultat += broj;
-    //             rezultatField.innerText = rezultat + '-';
-    //             inputField.value = "";
-    //             console.log("MINUS SABRO");
-    //             e.preventDefault();
-    //         } else if (last_op == '*') {
-
-    //             rezultat *= broj;
-    //             rezultatField.innerText = rezultat + '-';
-    //             inputField.value = "";
-    //             console.log("MINUS POMNOZIO");
-    //             e.preventDefault();
-    //         } else if (last_op == '÷') {
-    //             rezultat /= broj;
-    //             rezultatField.innerText = rezultat + '-';
-    //             inputField.value = "";
-    //             console.log("MINUS PODIJELIO");
-    //             e.preventDefault();
-    //         } else {
-    //             rezultat -= broj;
-    //             rezultatField.innerText = rezultat + '-';
-    //             inputField.value = "";
-    //             console.log("MINUS ODUZEO");
-    //             e.preventDefault();
-    //         }
-    //     }
-
-
-    //     last_op = "-";
-
-    // }
-    // if (e.key == '*') {
-    //     broj = parseFloat(inputField.value);
-
-
-
-    //     if (inputField.value == '') {
-    //         console.log('NEMORE');
-    //         e.preventDefault();
-    //     } else if (rezultat.innerText == '' && inputField.value != '') {
-    //         rezultat = broj;
-    //     }
-
-    //     else if (rezultatField.innerText == '') {
-    //         rezultat = broj;
-
-    //     } else if (rezultatField.innerText != '' && inputField.value != '') {
-    //         if (last_op == '+') {
-    //             console.log("PUTA SABRO");
-    //             rezultat += broj;
-    //         } else if (last_op == '-') {
-    //             rezultat -= broj;
-    //             console.log("PUTA ODUZEO");
-    //         } else if (last_op == '÷') {
-    //             rezultat /= broj;
-    //             console.log("PUTA PODIJELIO");
-    //         } else {
-    //             rezultat *= broj;
-    //             console.log("PUTA POMNOZIO");
-    //         }
-
-    //     }
-
-    //     rezultatField.innerText = rezultat + '*';
-    //     inputField.value = "";
-    //     e.preventDefault();
-    //     last_op = '*';
-
-
-    // }
-    // if (e.key == '/') {
-    //     broj = parseFloat(inputField.value);
-
-    //     if (inputField.value == '') {
-    //         console.log('NEMORE');
-    //         e.preventDefault();
-    //     } else if (rezultat.innerText == '' && inputField.value != '') {
-    //         rezultat = broj;
-    //     } else if (rezultatField.innerText == '') {
-    //         rezultat = broj;
-    //     } else if (rezultatField.innerText != '' && inputField.value != '') {
-    //         if (last_op == '+') {
-    //             console.log("PODIJELJENO SABRO");
-    //             rezultat += broj;
-    //         } else if (last_op == '-') {
-    //             rezultat -= broj;
-    //             console.log("PODIJELJENO ODUZEO");
-    //         } else if (last_op == '*') {
-    //             rezultat *= broj;
-    //             console.log("PODIJELJENO POMNOZIO");
-    //         } else {
-    //             rezultat /= broj;
-    //             console.log("PODIJELJENO PODIJELIO");
-    //         }
-    //     }
-    //     rezultatField.innerText = rezultat + '÷';
-    //     inputField.value = "";
-    //     e.preventDefault();
-    //     last_op = '÷';
-    // }
-    // if (e.key == ".") {
-    //     if (inputField.value.includes(".")) {
-    //         console.log("NEMORE");
-    //         e.preventDefault();
-    //     }
-    // }
-    if (e.key == "Enter") {
-        jednakoFunkcija();
-    }
-    if (e.key == 'Escape') {
-        eskape();
-    }
+    checkKeyboard(e);
 });
 
 

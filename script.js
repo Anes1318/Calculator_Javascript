@@ -8,7 +8,10 @@ const jednakoDugme = document.querySelector("[data-jednako]");
 const tackaDugme = document.querySelector("[data-tacka]");
 const delDugme = document.querySelector("[data-del]");
 const brojDecimalaField = document.querySelector(".broj-decimala");
-const poruka = document.querySelector(".eror");
+const eror = document.querySelector(".eror");
+const erorContainer = document.querySelector(".eror-container");
+const h1 = document.querySelector("h1");
+
 
 let last_op, imaMinus = 1, rezultat = 0, broj, brojDecimala = 1;
 
@@ -20,13 +23,31 @@ function povecaj() {
 }
 function smanji() {
     if (brojDecimala == 1) {
-
-        alert("Broj decimala ne moze biti manji od 1!");
+        erorDec();
         return;
     }
     brojDecimala--;
     brojDecimalaField.innerText = brojDecimala;
 }
+function erorNula() {
+    inputField.innerText = '';
+    h1.innerText = 'Ne mozete dijeliti sa nulom!';
+    eror.style.visibility = 'visible';
+    erorContainer.style.visibility = 'visible';
+}
+
+function erorDec() {
+    h1.innerText = 'Broj decimala ne moze biti manji od nule!';
+    eror.style.visibility = 'visible';
+    erorContainer.style.visibility = 'visible';
+}
+
+function ok() {
+    // console.log('hashirama');
+    eror.style.visibility = 'hidden';
+    erorContainer.style.visibility = 'hidden';
+}
+
 
 function eskape() {
     console.log('ESKAPE');
@@ -139,8 +160,7 @@ function jednakoFunkcija() {
                 break;
             case '÷':
                 if (broj == '0') {
-                    alert('Ne mozete dijeliti sa nulom!');
-                    inputField.innerText = '';
+                    erorNula();
                     return;
                 }
                 rezultat = parseFloat(rezultat);
@@ -214,8 +234,7 @@ function pritisnuoMinus(dugme) {
 
         } else if (last_op == '÷') {
             if (broj == '0') {
-                alert('Ne mozete dijeliti sa nulom!');
-                inputField.innerText = '';
+                erorNula();
                 return;
             }
             rezultat /= broj;
@@ -264,8 +283,7 @@ function pritisnuoPlus(dugme) {
             console.log("PLUS POMNOZIO");
         } else if (last_op == '÷') {
             if (broj == '0') {
-                alert('Ne mozete dijeliti sa nulom!');
-                inputField.innerText = '';
+                erorNula();
                 return;
             }
             rezultat /= broj;
@@ -306,8 +324,7 @@ function pritisnuoPuta(dugme) {
             console.log("PUTA SABRO");
         } else if (last_op == '÷') {
             if (broj == '0') {
-                alert('Ne mozete dijeliti sa nulom!');
-                inputField.innerText = '';
+                erorNula();
                 return;
             }
             rezultat /= broj;
@@ -348,8 +365,7 @@ function pritisnuoPodijeljeno(dugme) {
 
         } else {
             if (broj == '0') {
-                alert('Ne mozete dijeliti sa nulom!');
-                inputField.innerText = '';
+                erorNula();
                 return;
             }
 
@@ -425,17 +441,14 @@ function checkKeyboard(e) {
         eskape();
     }
 }
-
 brojevibuttons.forEach(dugme => {
     dugme.addEventListener('click', () => {
         pritisnuoBroj(dugme);
     })
 });
-
 delDugme.addEventListener('click', () => {
     DEL();
 });
-
 operacije.forEach(dugme => {
     dugme.addEventListener('click', () => {
 
@@ -460,7 +473,6 @@ operacije.forEach(dugme => {
     })
 
 });
-
 tackaDugme.addEventListener('click', () => {
     pritisnuoTacku();
 });
@@ -473,7 +485,3 @@ allClearButton.addEventListener('click', () => {
 body.addEventListener("keydown", (e) => {
     checkKeyboard(e);
 });
-
-
-
-

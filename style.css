@@ -16,6 +16,66 @@ body {
     padding: 0;
     margin: 0;
 }
+.eror-container {
+    visibility: hidden;
+    margin: -5vh 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(49, 231, 255, 0.5);
+    z-index: 1;
+}
+.eror {
+    border-radius: 10px;
+    visibility: hidden;
+    width: 396px;
+    height: 150px;
+    position: absolute;
+    left: 50%;
+    margin-left: -198px;
+    top: 50%;
+    margin-top: -75px;
+    background-color: rgba(255, 66, 60, 1);
+}
+.eror > h1 {
+    /* max-width: 400px; */
+    font-weight: bold;
+    text-align: center;
+}
+.eror > button {
+    width: fit-content;
+    font-size: 1.2rem;
+    height: 40px;
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    margin-left: -21.5px;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+}
+.eror > button:hover {
+    outline: 2px white dotted;
+    opacity: 0.85;
+    cursor: pointer;
+}
+.container-grid {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    margin-top: 5vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+}
+.container-grid > button {
+    cursor: pointer;
+    font-size: 2rem;
+    color: white;
+    /* border: 1px solid rgb(255, 0, 0); */
+    outline: none;
+    background-color: rgb(127, 128, 131);
+}
 
 .screen {
     border-radius: 20px 20px 0 0;
@@ -95,29 +155,7 @@ body {
 .ar-down:hover {
     cursor: pointer;
 }
-.eror {
-    color: red;
-    font-size: 3rem;
-}
 
-/* DUGMAT */
-
-.container-grid {
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    margin-top: 5vh;
-    grid-template-columns: repeat(4, 100px);
-    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
-}
-.container-grid > button {
-    cursor: pointer;
-    font-size: 2rem;
-    color: white;
-    /* border: 1px solid rgb(255, 0, 0); */
-    outline: none;
-    background-color: rgb(127, 128, 131);
-}
 /* .span-two:hover {
     background-image: url(brave_mBtwB4mBxj.png) !important;
     background-size: 200px 100px, cover !important;

@@ -22,7 +22,7 @@ function povecaj() {
     brojDecimalaField.innerText = brojDecimala;
 }
 function smanji() {
-    if (brojDecimala == 1) {
+    if (brojDecimala == 0) {
         erorDec();
         return;
     }

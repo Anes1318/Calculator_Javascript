@@ -166,26 +166,34 @@ body {
     cursor: pointer;
 }
 
-/* .span-two:hover {
+.dark:hover {
     background-image: url(brave_mBtwB4mBxj.png) !important;
     background-size: 200px 100px, cover !important;
-} */
+}
 .span-two {
     grid-column: span 2;
 }
 .container-grid > button:hover {
     background-color: rgba(0, 0, 0, 0.5);
-    /* background-image: url(brave_mBtwB4mBxj.png);
-    background-size: 100px 100px, cover; */
 }
-.korijen {
+
+.darkviper:hover {
+    background-image: url(brave_mBtwB4mBxj.png);
+    background-size: 100px 100px, cover;
+}
+
+.au {
+    background-image: url(brave_mBtwB4mBxj.png);
+}
+
+/* .korijen {
     background-image: url(korijen.png);
     background-size: 90px 100px;
     background-repeat: no-repeat;
-}
+} */
 
 /* MAKNE STRELICE SA INPUTA */
-input[type='number']::-webkit-outer-spin-button,
+/* input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
     -webkit-appearance: none !important;
     margin: 0 !important;
@@ -193,4 +201,4 @@ input[type='number']::-webkit-inner-spin-button {
 
 input[type='number'] {
     -moz-appearance: textfield !important;
-}
+} */

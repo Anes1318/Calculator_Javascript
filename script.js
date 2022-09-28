@@ -1,4 +1,4 @@
-const body = document.querySelector("body");
+const body = document.querySelector("html");
 const inputField = document.querySelector("#input");
 const rezultatField = document.querySelector("#last_input");
 const allClearButton = document.querySelector("[data-all-clear]");
@@ -11,6 +11,7 @@ const brojDecimalaField = document.querySelector(".broj-decimala");
 const eror = document.querySelector(".eror");
 const erorContainer = document.querySelector(".eror-container");
 const h1 = document.querySelector("h1");
+var s2 = document.getElementsByClassName('span-two');
 
 
 let last_op, imaMinus = 1, rezultat = 0, broj, brojDecimala = 1;
@@ -56,12 +57,40 @@ function eskape() {
     rezultatField.innerText = '';
     inputField.innerText = '';
     allClearButton.blur();
+
 }
 function DEL() {
     inputField.innerText = inputField.innerText.toString().slice(0, -1);
     console.log("IZBRISAT ZADNJI");
 }
 function jednakoFunkcija() {
+    if (inputField.innerText == '1318') {
+
+
+        $(s2).each(function () {
+            $(this).addClass('dark');
+        })
+
+        $('.container-grid button').each(function () {
+            $(this).addClass('darkviper');
+        })
+
+        $(body).addClass('au');
+
+    }
+    if (inputField.innerText == '8131') {
+        $(s2).each(function () {
+            $(this).removeClass('dark');
+        })
+
+        $('.container-grid button').each(function () {
+            $(this).removeClass('darkviper');
+        })
+
+        $(body).removeClass('au');
+    }
+
+
     if (inputField.innerText == '') {
         if (rezultatField.innerText == '') {
             return;
@@ -385,35 +414,8 @@ function pritisnuoTacku() {
     inputField.innerText += '.';
 }
 function checkKeyboard(e) {
-    if (e.key == '0') {
-        document.querySelector("#nula").click();
-    }
-    if (e.key == '1') {
-        document.querySelector("#jedan").click();
-    }
-    if (e.key == '2') {
-        document.querySelector("#dva").click();
-    }
-    if (e.key == '3') {
-        document.querySelector("#tri").click();
-    }
-    if (e.key == '4') {
-        document.querySelector("#cetiri").click();
-    }
-    if (e.key == '5') {
-        document.querySelector("#pet").click();
-    }
-    if (e.key == '6') {
-        document.querySelector("#ses").click();
-    }
-    if (e.key == '7') {
-        document.querySelector("#sedam").click();
-    }
-    if (e.key == '8') {
-        document.querySelector("#osam").click();
-    }
-    if (e.key == '9') {
-        document.querySelector("#devet").click();
+    if (e.key >= 0 && e.key <= 9) {
+        document.getElementById(e.key).click(); // ty pekre
     }
     if (e.key == 'Backspace') {
         DEL();

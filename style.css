@@ -134,7 +134,7 @@ body {
     background: rgb(139, 179, 255);
     font-size: 1.8rem;
     margin-bottom: 6px;
-    /* border: 1px greenyellow solid; */
+
     width: fit-content;
     margin-left: 44%;
 }
@@ -145,7 +145,7 @@ body {
     background: rgb(139, 179, 255);
     font-size: 1.8rem;
     margin-bottom: 6px;
-    /* border: 1px greenyellow solid; */
+
     width: fit-content;
 }
 
@@ -157,7 +157,7 @@ body {
     background: rgb(139, 179, 255);
     font-size: 1.8rem;
     margin-bottom: 6px;
-    /* border: 1px greenyellow solid; */
+
     width: fit-content;
     margin-left: 44%;
 }
@@ -166,17 +166,25 @@ body {
     cursor: pointer;
 }
 
+.span-two {
+    grid-column: span 2;
+}
+
+@media (hover: none) {
+    .container-grid > button:active {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+@media (hover: hover) {
+    .container-grid > button:hover {
+        background-color: rgba(127, 128, 131, 0.5);
+    }
+}
+
 .dark:hover {
     background-image: url(brave_mBtwB4mBxj.png) !important;
     background-size: 200px 100px, cover !important;
 }
-.span-two {
-    grid-column: span 2;
-}
-.container-grid > button:hover {
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
 .darkviper:hover {
     background-image: url(brave_mBtwB4mBxj.png);
     background-size: 100px 100px, cover;
@@ -185,20 +193,3 @@ body {
 .au {
     background-image: url(brave_mBtwB4mBxj.png);
 }
-
-/* .korijen {
-    background-image: url(korijen.png);
-    background-size: 90px 100px;
-    background-repeat: no-repeat;
-} */
-
-/* MAKNE STRELICE SA INPUTA */
-/* input[type='number']::-webkit-outer-spin-button,
-input[type='number']::-webkit-inner-spin-button {
-    -webkit-appearance: none !important;
-    margin: 0 !important;
-}
-
-input[type='number'] {
-    -moz-appearance: textfield !important;
-} */

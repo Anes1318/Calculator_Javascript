@@ -65,7 +65,7 @@ body {
     display: grid;
     justify-content: center;
     align-content: center;
-    /* margin-top: 2.5vh; */
+    margin-top: 2.5rem;
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }

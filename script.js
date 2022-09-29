@@ -14,7 +14,7 @@ const h1 = document.querySelector("h1");
 var s2 = document.getElementsByClassName('span-two');
 
 
-let last_op, imaMinus = 1, rezultat = 0, broj, brojDecimala = 1;
+let last_op, imaMinus = 1, rezultat = 0, broj, brojDecimala = 2;
 
 brojDecimalaField.innerText = brojDecimala;
 
@@ -36,20 +36,16 @@ function erorNula() {
     eror.style.visibility = 'visible';
     erorContainer.style.visibility = 'visible';
 }
-
 function erorDec() {
     h1.innerText = 'Broj decimala ne moze biti manji od nule!';
     eror.style.visibility = 'visible';
     erorContainer.style.visibility = 'visible';
 }
-
 function ok() {
-    // console.log('hashirama');
+
     eror.style.visibility = 'hidden';
     erorContainer.style.visibility = 'hidden';
 }
-
-
 function eskape() {
     console.log('ESKAPE');
     rezultat = 0;
@@ -65,32 +61,26 @@ function DEL() {
 }
 function jednakoFunkcija() {
     if (inputField.innerText == '1318') {
-
-
         $(s2).each(function () {
             $(this).addClass('dark');
         })
-
         $('.container-grid button').each(function () {
             $(this).addClass('darkviper');
         })
-
         $(body).addClass('au');
-
     }
     if (inputField.innerText == '8131') {
         $(s2).each(function () {
             $(this).removeClass('dark');
         })
-
         $('.container-grid button').each(function () {
             $(this).removeClass('darkviper');
         })
-
         $(body).removeClass('au');
     }
-
-
+    if (inputField.innerText == '-' || inputField.innerText == '.') {
+        return;
+    }
     if (inputField.innerText == '') {
         if (rezultatField.innerText == '') {
             return;
@@ -101,87 +91,50 @@ function jednakoFunkcija() {
         return;
     }
     console.log("ZADNJA OPERACIJA", last_op);
-    if (inputField.innerText != '' && rezultatField.innerText == '') {
+    if (inputField.innerText != '' && rezultatField.innerText == '') { // kada pritiskamo jednako vise puta zaredom
         console.log('hashirama');
-
+        rezultat = parseFloat(rezultat);
         switch (last_op) {
             case '+':
-                rezultat = parseFloat(rezultat);
                 rezultat += zadnji_broj;
-                rezultat = parseFloat(rezultat).toFixed(brojDecimala);
-
-
-                rezultatField.innerText = '';
-                inputField.innerText = rezultat;
                 console.log("JEDNAKO SABRO JOPE");
                 break;
             case '-':
-                rezultat = parseFloat(rezultat);
                 rezultat -= zadnji_broj;
-                rezultat = parseFloat(rezultat).toFixed(brojDecimala);
-
-
-                rezultatField.innerText = '';
-                inputField.innerText = rezultat;
                 console.log("JEDNAKO ODUZEO JOPE");
                 break;
             case '*':
-                rezultat = parseFloat(rezultat);
                 rezultat *= zadnji_broj;
-                rezultat = parseFloat(rezultat).toFixed(brojDecimala);
-
-
-                rezultatField.innerText = '';
-                inputField.innerText = rezultat;
                 console.log("JEDNAKO POMNOZIO JOPE");
                 break;
             case '÷':
-
-                rezultat = parseFloat(rezultat);
                 rezultat /= zadnji_broj;
-                rezultat = parseFloat(rezultat).toFixed(brojDecimala);
-
-                rezultatField.innerText = '';
-                inputField.innerText = rezultat;
-                console.log("JEDNAKO PITE JOPE");
+                console.log("JEDNAKO PODIJELIO JOPE");
                 break;
             default:
+                rezultat = broj;
                 break;
         }
-
-
-
-    } else if (inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') {
+        rezultat = parseFloat(rezultat).toFixed(brojDecimala);
+        rezultatField.innerText = '';
+        inputField.innerText = rezultat;
+    } else if (inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') { // jednako samo jednom
+        rezultat = parseFloat(rezultat);
         switch (last_op) {
             case '+':
-                rezultat = parseFloat(rezultat);
                 rezultat += broj;
-                rezultat = parseFloat(rezultat).toFixed(brojDecimala);
-
-                rezultatField.innerText = '';
-                inputField.innerText = rezultat;
                 zadnji_broj = broj;
                 broj = rezultat;
                 console.log("JEDNAKO SABRO");
                 break;
             case '-':
-                rezultat = parseFloat(rezultat);
                 rezultat -= broj;
-                rezultat = parseFloat(rezultat).toFixed(brojDecimala);
-
-                rezultatField.innerText = '';
-                inputField.innerText = rezultat;
                 zadnji_broj = broj;
                 broj = rezultat;
                 console.log("JEDNAKO ODUZEO");
                 break;
             case '*':
-                rezultat = parseFloat(rezultat);
                 rezultat *= broj;
-                rezultat = parseFloat(rezultat).toFixed(brojDecimala);
-
-                rezultatField.innerText = '';
-                inputField.innerText = rezultat;
                 zadnji_broj = broj;
                 broj = rezultat;
                 console.log("JEDNAKO POMNOZIO");
@@ -191,20 +144,17 @@ function jednakoFunkcija() {
                     erorNula();
                     return;
                 }
-                rezultat = parseFloat(rezultat);
                 rezultat /= broj;
-                rezultat = parseFloat(rezultat).toFixed(brojDecimala);
-
-                rezultatField.innerText = '';
-                inputField.innerText = rezultat;
                 zadnji_broj = broj;
                 broj = rezultat;
-
                 console.log("JEDNAKO PODIJELIO");
                 break;
             default:
                 break;
         }
+        rezultat = parseFloat(rezultat).toFixed(brojDecimala);
+        rezultatField.innerText = '';
+        inputField.innerText = rezultat;
     }
 
 }
@@ -231,19 +181,19 @@ function pritisnuoMinus(dugme) {
     if (inputField.innerText == '') {
         console.log('MORE NEGATIVNI');
         inputField.innerText += '-';
-        // dugme.blur();
+        dugme.blur();
         return;
     } else if (inputField.innerText == '-') {
         console.log('NEMORE MINUS');
-        // dugme.blur();
+        dugme.blur();
         return;
     }
 
     else if (rezultatField.innerText == '' && inputField.innerText != '' && inputField.innerText != '.' && inputField.innerText != '-') {
         console.log('prebacavamo broj u rezultat');
         rezultat = broj;
-        rezultatField.innerText = rezultat + '-';
-        inputField.innerText = '';
+        // rezultatField.innerText = rezultat + '-';
+        // inputField.innerText = '';
     }
 
 
@@ -274,10 +224,16 @@ function pritisnuoMinus(dugme) {
             console.log("MINUS ODUZEO");
 
         }
-        rezultatField.innerText = rezultat + '-';
-        inputField.innerText = '';
-    }
 
+
+
+    }
+    console.log(rezultat, "prije");
+    rezultat = parseFloat(rezultat);
+    rezultat = parseFloat(rezultat).toFixed(brojDecimala);
+    console.log(rezultat, "posle");
+    rezultatField.innerText = rezultat + '-';
+    inputField.innerText = '';
 
     last_op = '-';
     // dugme.blur();
@@ -288,18 +244,11 @@ function pritisnuoPlus(dugme) {
     if ((inputField.innerText == '' || inputField.innerText == '.' || inputField.innerText == '-') && rezultatField.innerText == '') {
         console.log('NEMORE PLUS');
         dugme.blur();
-
         return;
     } else if (rezultatField.innerText == '' && inputField.innerText != '' && inputField.innerText != '.' && inputField.innerText != '-') {
         console.log('prebacavamo broj u rezultat');
         rezultat = broj;
-
-    } else if (inputField.innerText == '' && rezultatField.innerText != '') {
-        console.log('mijenjamo operaciju');
-        rezultatField.innerText = rezultat + '+';
     }
-
-
     else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') {
 
         if (last_op == '-') {
@@ -325,6 +274,10 @@ function pritisnuoPlus(dugme) {
         }
 
     }
+    console.log(rezultat, "prije");
+    rezultat = parseFloat(rezultat);
+    rezultat = parseFloat(rezultat).toFixed(brojDecimala);
+    console.log(rezultat, "posle");
     rezultatField.innerText = rezultat + '+';
     inputField.innerText = '';
 
@@ -341,8 +294,7 @@ function pritisnuoPuta(dugme) {
     }
     else if (rezultatField.innerText == '' && inputField.innerText != '-' && inputField.innerText != '.') {
         rezultat = broj;
-        rezultatField.innerText = rezultat + '*';
-        inputField.innerText = '';
+
     } else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') {
         if (last_op == '-') {
             rezultat -= broj;
@@ -363,6 +315,10 @@ function pritisnuoPuta(dugme) {
             console.log("PUTA POMNOZIO");
         }
     }
+    console.log(rezultat, "prije");
+    rezultat = parseFloat(rezultat);
+    rezultat = parseFloat(rezultat).toFixed(brojDecimala);
+    console.log(rezultat, "posle");
     rezultatField.innerText = rezultat + '*';
     inputField.innerText = '';
     last_op = '*';
@@ -373,13 +329,11 @@ function pritisnuoPodijeljeno(dugme) {
     broj = parseFloat(broj);
     if ((inputField.innerText == '' || inputField.innerText == '.' || inputField.innerText == '-') && rezultatField.innerText == '') {
         console.log("NEMORE PODIJELJENO");
-        return;
         dugme.blur();
+        return;
     }
     else if (rezultatField.innerText == '' && inputField.innerText != '-' && inputField.innerText != '.') {
         rezultat = broj;
-        rezultatField.innerText = rezultat + '÷';
-        inputField.innerText = '';
     } else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') {
         if (last_op == '-') {
             rezultat -= broj;
@@ -390,24 +344,25 @@ function pritisnuoPodijeljeno(dugme) {
         } else if (last_op == '*') {
             rezultat *= broj;
             console.log("PODIJELJENO POMNOZIO");
-
         } else {
             if (broj == '0') {
                 erorNula();
                 return;
             }
-
             rezultat /= broj;
             console.log("PODIJELJENO PODIJELIO");
         }
     }
+    console.log(rezultat, "prije");
+    rezultat = parseFloat(rezultat);
+    rezultat = parseFloat(rezultat).toFixed(brojDecimala);
+    console.log(rezultat, "posle");
     rezultatField.innerText = rezultat + '÷';
     inputField.innerText = '';
     last_op = '÷';
     console.log('podijeljeno');
 }
 function pritisnuoTacku() {
-
     if (inputField.innerText.includes('.') || inputField.innerText == '-') {
         return;
     }

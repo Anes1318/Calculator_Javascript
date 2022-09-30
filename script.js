@@ -241,6 +241,7 @@ function pritisnuoMinus(dugme) {
 function pritisnuoPlus(dugme) {
     broj = inputField.innerText;
     broj = parseFloat(broj);
+    rezultat = parseFloat(rezultat);
     if ((inputField.innerText == '' || inputField.innerText == '.' || inputField.innerText == '-') && rezultatField.innerText == '') {
         console.log('NEMORE PLUS');
         dugme.blur();
@@ -252,7 +253,6 @@ function pritisnuoPlus(dugme) {
     else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') {
 
         if (last_op == '-') {
-
             rezultat -= broj;
             console.log("PLUS ODUZEO");
         } else if (last_op == '*') {
@@ -265,10 +265,8 @@ function pritisnuoPlus(dugme) {
             }
             rezultat /= broj;
             console.log("PLUS PODIJELIO");
-
         } else {
             rezultat += broj;
-
             console.log("PLUS SABRO");
 
         }

@@ -21,7 +21,7 @@ body {
     border: 0;
     color: red;
     box-shadow: 0 0 3rem black;
-    min-height: 20%;
+    min-height: 23%;
 }
 .eror::backdrop {
     background: linear-gradient(to bottom right, red, blue);

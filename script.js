@@ -33,18 +33,14 @@ function smanji() {
 function erorNula() {
     inputField.innerText = '';
     h1.innerText = 'Ne mozete dijeliti sa nulom!';
-    eror.style.visibility = 'visible';
-    erorContainer.style.visibility = 'visible';
+    eror.showModal();
 }
 function erorDec() {
     h1.innerText = 'Broj decimala ne moze biti manji od nule!';
-    eror.style.visibility = 'visible';
-    erorContainer.style.visibility = 'visible';
+    eror.showModal();
 }
 function ok() {
-
-    eror.style.visibility = 'hidden';
-    erorContainer.style.visibility = 'hidden';
+    eror.close();
 }
 function eskape() {
     console.log('ESKAPE');

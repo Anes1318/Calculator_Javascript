@@ -16,28 +16,16 @@ body {
     padding: 0;
     margin: 0;
 }
-.eror-container {
-    position: fixed;
-    visibility: hidden;
-    padding: 0;
-    width: 100vw;
-    min-height: 100vh;
-    background-color: rgba(49, 231, 255, 0.5);
-    top: 0;
-    z-index: 1;
-}
 .eror {
-    border-radius: 6px;
-    visibility: hidden;
-    width: 396px;
-    height: 150px;
-    position: fixed;
-    left: 50%;
-    margin-left: -198px;
-    top: 50%;
-    margin-top: -75px;
-
-    background-color: rgba(255, 66, 60, 1);
+    max-width: 40%;
+    border: 0;
+    color: red;
+    box-shadow: 0 0 3rem black;
+    min-height: 20%;
+}
+.eror::backdrop {
+    background: linear-gradient(to bottom right, red, blue);
+    opacity: 0.3;
 }
 .eror > h1 {
     /* max-width: 400px; */
@@ -54,10 +42,10 @@ body {
     margin-left: -21.5px;
     background-color: black;
     color: white;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 .eror > button:hover {
-    outline: 2px white dotted;
+    outline: 1px rgb(255, 0, 0) solid;
     opacity: 0.85;
     cursor: pointer;
 }

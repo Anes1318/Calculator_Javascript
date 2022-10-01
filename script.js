@@ -54,6 +54,8 @@ function eskape() {
     console.log('ESKAPE');
     rezultat = 0;
     broj = 0;
+    zadnji_broj = 0;
+    last_op = undefined;
     rezultatField.innerText = '';
     inputField.innerText = '';
     allClearButton.blur();

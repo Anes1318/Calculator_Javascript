@@ -101,14 +101,16 @@ body {
 }
 
 .decimale-container {
-    text-align: center;
-    color: black;
     display: grid;
     justify-content: center;
     align-content: center;
+
+    grid-template-columns: repeat(4, 50px);
 }
 .Dtitle {
     color: white;
+    /* grid-column: 1 / -1; */
+    grid-column: span 4;
 }
 .ar-up:hover {
     cursor: pointer;
@@ -122,19 +124,19 @@ body {
     background: rgb(139, 179, 255);
     font-size: 1.8rem;
     margin-bottom: 6px;
-
+    margin-left: 30%;
     width: fit-content;
-    margin-left: 44%;
 }
 
 .broj-decimala {
+    text-align: center;
     border-radius: 7px;
     margin-left: 45%;
     background: rgb(139, 179, 255);
     font-size: 1.8rem;
     margin-bottom: 6px;
-
-    width: fit-content;
+    /* margin-right: 50%; */
+    width: 2rem;
 }
 
 .ar-down {
@@ -147,7 +149,7 @@ body {
     margin-bottom: 6px;
 
     width: fit-content;
-    margin-left: 44%;
+    margin-left: 40%;
 }
 
 .ar-down:hover {

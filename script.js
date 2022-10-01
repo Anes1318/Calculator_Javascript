@@ -19,6 +19,10 @@ let last_op, imaMinus = 1, rezultat = 0, broj, brojDecimala = 2;
 brojDecimalaField.innerText = brojDecimala;
 
 function povecaj() {
+    if (brojDecimala == 100) {
+        erorDec();
+        return;
+    }
     brojDecimala++;
     brojDecimalaField.innerText = brojDecimala;
 }
@@ -36,7 +40,11 @@ function erorNula() {
     eror.showModal();
 }
 function erorDec() {
-    h1.innerText = 'Broj decimala ne moze biti manji od nule!';
+    if (brojDecimala > 1) {
+        h1.innerText = 'Broj decimala ne moze biti veci od sto!';
+    } else {
+        h1.innerText = 'Broj decimala ne moze biti manji od nule!';
+    }
     eror.showModal();
 }
 function ok() {
@@ -394,6 +402,13 @@ function checkKeyboard(e) {
     if (e.key == 'Escape') {
         eskape();
     }
+    if (e.key == 'ArrowRight') {
+        povecaj();
+    }
+    if (e.key == 'ArrowLeft') {
+        smanji();
+    }
+
 }
 brojevibuttons.forEach(dugme => {
     dugme.addEventListener('click', () => {
@@ -437,5 +452,6 @@ allClearButton.addEventListener('click', () => {
     eskape();
 });
 body.addEventListener("keydown", (e) => {
+    // console.log(e.key);
     checkKeyboard(e);
 });

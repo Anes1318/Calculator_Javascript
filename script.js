@@ -11,7 +11,7 @@ const brojDecimalaField = document.querySelector(".broj-decimala");
 const eror = document.querySelector(".eror");
 const erorContainer = document.querySelector(".eror-container");
 const h1 = document.querySelector("h1");
-var s2 = document.getElementsByClassName('span-two');
+const s2 = document.getElementsByClassName('span-two');
 
 
 let last_op, imaMinus = 1, rezultat = 0, broj, brojDecimala = 2;
@@ -178,6 +178,7 @@ function pritisnuoBroj(dugme) {
 function pritisnuoMinus(dugme) {
     broj = inputField.innerText;
     broj = parseFloat(broj);
+    rezultat = parseFloat(rezultat);
     if (inputField.innerText == '') {
         console.log('MORE NEGATIVNI');
         inputField.innerText += '-';
@@ -229,7 +230,7 @@ function pritisnuoMinus(dugme) {
 
     }
     console.log(rezultat, "prije");
-    rezultat = parseFloat(rezultat);
+
     rezultat = parseFloat(rezultat).toFixed(brojDecimala);
     console.log(rezultat, "posle");
     rezultatField.innerText = rezultat + '-';
@@ -285,10 +286,12 @@ function pritisnuoPlus(dugme) {
 function pritisnuoPuta(dugme) {
     broj = inputField.innerText;
     broj = parseFloat(broj);
+    rezultat = parseFloat(rezultat);
     if ((inputField.innerText == '' || inputField.innerText == '.' || inputField.innerText == '-') && rezultatField.innerText == '') {
         console.log("NEMORE PUTA");
-        return;
         dugme.blur();
+        return;
+
     }
     else if (rezultatField.innerText == '' && inputField.innerText != '-' && inputField.innerText != '.') {
         rezultat = broj;
@@ -314,7 +317,7 @@ function pritisnuoPuta(dugme) {
         }
     }
     console.log(rezultat, "prije");
-    rezultat = parseFloat(rezultat);
+
     rezultat = parseFloat(rezultat).toFixed(brojDecimala);
     console.log(rezultat, "posle");
     rezultatField.innerText = rezultat + '*';
@@ -325,6 +328,7 @@ function pritisnuoPuta(dugme) {
 function pritisnuoPodijeljeno(dugme) {
     broj = inputField.innerText;
     broj = parseFloat(broj);
+    rezultat = parseFloat(rezultat);
     if ((inputField.innerText == '' || inputField.innerText == '.' || inputField.innerText == '-') && rezultatField.innerText == '') {
         console.log("NEMORE PODIJELJENO");
         dugme.blur();
@@ -352,7 +356,7 @@ function pritisnuoPodijeljeno(dugme) {
         }
     }
     console.log(rezultat, "prije");
-    rezultat = parseFloat(rezultat);
+
     rezultat = parseFloat(rezultat).toFixed(brojDecimala);
     console.log(rezultat, "posle");
     rezultatField.innerText = rezultat + '÷';

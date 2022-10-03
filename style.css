@@ -16,6 +16,8 @@ body {
     padding: 0;
     margin: 0;
 }
+
+/* eror modal */
 .eror {
     /* max-width: 40%; */
     border: 0;
@@ -51,22 +53,8 @@ body {
     opacity: 0.85;
     cursor: pointer;
 }
-.container-grid {
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    margin-top: 2.5rem;
-    grid-template-columns: repeat(4, 100px);
-    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
-}
-.container-grid > button {
-    cursor: pointer;
-    font-size: 2rem;
-    color: white;
-    /* border: 1px solid rgb(255, 0, 0); */
-    outline: none;
-    background-color: rgb(127, 128, 131);
-}
+
+/* screen */
 
 .screen {
     border-radius: 20px 20px 0 0;
@@ -101,6 +89,44 @@ body {
     width: 400px;
     font-size: 2.5rem;
 }
+
+/* dugmat */
+
+.container-grid {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    margin-top: 2.5rem;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(6, 100px);
+}
+.container-grid > button {
+    cursor: pointer;
+    font-size: 2rem;
+    color: white;
+    /* border: 1px solid rgb(255, 0, 0); */
+    outline: none;
+    background-color: rgb(127, 128, 131);
+}
+
+.span-two {
+    grid-column: span 2;
+}
+
+/* media kveri */
+
+@media (hover: none) {
+    .container-grid > button:active {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+@media (hover: hover) {
+    .container-grid > button:hover {
+        background-color: rgba(127, 128, 131, 0.5);
+    }
+}
+
+/* decimale */
 
 .decimale-container {
     display: grid;
@@ -158,20 +184,7 @@ body {
     cursor: pointer;
 }
 
-.span-two {
-    grid-column: span 2;
-}
-
-@media (hover: none) {
-    .container-grid > button:active {
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-}
-@media (hover: hover) {
-    .container-grid > button:hover {
-        background-color: rgba(127, 128, 131, 0.5);
-    }
-}
+/* ister eg */
 
 .dark:hover {
     background-image: url(brave_mBtwB4mBxj.png) !important;
@@ -184,4 +197,6 @@ body {
 
 .au {
     background-image: url(brave_mBtwB4mBxj.png);
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
 }

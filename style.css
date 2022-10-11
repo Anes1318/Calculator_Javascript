@@ -73,7 +73,8 @@ body {
     background-color: rgb(139, 179, 255);
 }
 .rezultat {
-    padding-right: 8px;
+    padding-top: 10px;
+    padding-right: 15px;
     font-size: 2.2rem;
     font-weight: 600;
     color: rgba(0, 0, 0, 1);
@@ -108,9 +109,14 @@ body {
     outline: none;
     background-color: rgb(127, 128, 131);
 }
-
 .span-two {
     grid-column: span 2;
+}
+.korijen {
+    background-image: url(ikonica_korijen.png);
+    background-size: 90px 90px;
+    padding: 30px;
+    background-repeat: no-repeat;
 }
 
 /* media kveri */

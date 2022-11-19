@@ -28,20 +28,23 @@ function power() {
     broj = inputField.innerText;
     broj = parseFloat(broj);
     rezultat = parseFloat(rezultat);
-    if ((inputField.innerText == '' || inputField.innerText == '.' || inputField.innerText == '-') && rezultatField.innerText == '') {
+    if (inputField.innerText == '' || inputField.innerText == '.' || inputField.innerText == '-') {
         // console.log('NEMORE POWER');
+
         powerDugme.blur();
         return;
     }
     else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '.') {
 
         if (last_op == '+') {
+
+            broj = Math.pow(broj, 2);
             rezultat += broj;
 
             // console.log("POWER SABRO");
 
         } else if (last_op == '*') {
-
+            broj = Math.pow(broj, 2);
             rezultat *= broj;
 
             // console.log("POWER POMNOZIO");
@@ -52,10 +55,12 @@ function power() {
                 erorNula();
                 return;
             }
+            broj = Math.pow(broj, 2);
             rezultat /= broj;
             // console.log("POWER PODIJELIO");
 
         } else if (last_op == '-') {
+            broj = Math.pow(broj, 2);
             rezultat -= broj;
 
             // console.log("POWER ODUZEO");
@@ -68,9 +73,11 @@ function power() {
         broj = rezultat;
 
 
+    } else {
+        rezultat = Math.pow(broj, 2);
     }
 
-    rezultat = Math.pow(broj, 2);
+
 
     rezultat = parseFloat(rezultat).toFixed(brojDecimala);
     inputField.innerText = rezultat;

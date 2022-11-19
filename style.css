@@ -98,8 +98,8 @@ body {
     justify-content: center;
     align-content: center;
     margin-top: 2.5rem;
-    grid-template-columns: repeat(4, 100px);
-    grid-template-rows: minmax(120px, auto) repeat(6, 100px);
+    grid-template-columns: repeat(4, 80px);
+    grid-template-rows: minmax(120px, auto) repeat(6, 80px);
 }
 .container-grid > button {
     cursor: pointer;
@@ -114,7 +114,7 @@ body {
 }
 .korijen {
     background-image: url(ikonica_korijen.png);
-    background-size: 90px 90px;
+    background-size: 70px 70px;
     padding: 30px;
     background-repeat: no-repeat;
 }

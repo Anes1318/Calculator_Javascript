@@ -195,7 +195,7 @@ body {
 
 /* druga tema */
 .background2 {
-    position: fixed;
+    position: absolute;
     top: 0;
     background-color: white;
     min-height: 100vh;

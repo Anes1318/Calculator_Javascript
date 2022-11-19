@@ -29,6 +29,9 @@ body {
     background: linear-gradient(to bottom right, red, blue);
     opacity: 0.3;
 }
+.eror {
+    background-color: rgb(0, 26, 255);
+}
 .eror > h1 {
     /* max-width: 400px; */
     margin-top: -10px;
@@ -58,7 +61,7 @@ body {
 
 .screen {
     border-radius: 20px 20px 0 0;
-    margin-left: 2px;
+    outline: 0.1px solid black;
     padding: 0;
     box-sizing: border-box;
     display: flex;
@@ -68,9 +71,9 @@ body {
     min-height: 150px;
     word-wrap: break-word;
     word-break: break-all;
-    width: 99%;
-    grid-column: 1 / -1; /* stavlja ovo u zadnji column*/
-    background-color: rgb(139, 179, 255);
+    width: 100%;
+    grid-column: 1 / -1; /* stavlja ovo u poslednji column*/
+    background-color: rgb(75, 138, 255);
 }
 .rezultat {
     padding-top: 10px;
@@ -105,8 +108,8 @@ body {
     cursor: pointer;
     font-size: 2rem;
     color: white;
-    /* border: 1px solid rgb(255, 0, 0); */
-    outline: none;
+    outline: 0.1px solid black;
+    border: none;
     background-color: rgb(127, 128, 131);
 }
 .span-two {
@@ -143,7 +146,7 @@ body {
 }
 .Dtitle {
     color: white;
-    /* grid-column: 1 / -1; */
+
     grid-column: span 4;
 }
 .ar-up:hover {
@@ -155,7 +158,7 @@ body {
     outline: none;
     box-sizing: border-box;
     border: none;
-    background: rgb(139, 179, 255);
+    background: rgb(75, 138, 255);
     font-size: 1.8rem;
     margin-bottom: 6px;
     margin-left: 30%;
@@ -166,10 +169,10 @@ body {
     text-align: center;
     border-radius: 7px;
     margin-left: 45%;
-    background: rgb(139, 179, 255);
+    background: rgb(75, 138, 255);
     font-size: 1.8rem;
     margin-bottom: 6px;
-    /* margin-right: 50%; */
+
     width: 2rem;
 }
 
@@ -178,7 +181,7 @@ body {
     outline: none;
     box-sizing: border-box;
     border: none;
-    background: rgb(139, 179, 255);
+    background: rgb(75, 138, 255);
     font-size: 1.8rem;
     margin-bottom: 6px;
 
@@ -190,19 +193,32 @@ body {
     cursor: pointer;
 }
 
+/* druga tema */
+.background2 {
+    position: fixed;
+    top: 0;
+    background-color: white;
+    min-height: 100vh;
+    width: 100vw;
+}
+.decimale_title2 {
+    color: black;
+}
+
 /* ister eg */
 
-.dark:hover {
+.button_darkviperau:hover {
     background-image: url(brave_mBtwB4mBxj.png) !important;
-    background-size: 200px 100px, cover !important;
-}
-.darkviper:hover {
-    background-image: url(brave_mBtwB4mBxj.png);
-    background-size: 100px 100px, cover;
+    background-size: 80px 80px, cover !important;
 }
 
-.au {
-    background-image: url(brave_mBtwB4mBxj.png);
-    background-repeat: no-repeat;
-    background-size: 100vw 100vh;
+.background_darkviperau {
+    position: fixed;
+    top: 0;
+    background-color: white;
+    min-height: 100vh;
+    width: 100vw;
+    background-image: url(brave_mBtwB4mBxj.png) !important;
+    background-repeat: no-repeat !important;
+    background-size: 100vw 100vh !important;
 }

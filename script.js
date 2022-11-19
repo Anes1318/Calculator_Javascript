@@ -12,7 +12,7 @@ const delDugme = document.querySelector("[data-del]");
 const korijenDugme = document.querySelector("[data-korijen]");
 const brojDecimalaField = document.querySelector(".broj-decimala");
 const powerDugme = document.querySelector("[data-power]");
-
+const themeDugme = document.querySelector("[data-theme]");
 
 const eror = document.querySelector(".eror");
 const erorContainer = document.querySelector(".eror-container");
@@ -20,9 +20,24 @@ const h1 = document.querySelector("h1");
 const s2 = document.getElementsByClassName('span-two');
 
 
-let last_op, imaMinus = 1, rezultat = 0, broj, brojDecimala = 2;
+let last_op, imaMinus = 1, rezultat = 0, broj, brojDecimala = 2, tema = 1;
 
 brojDecimalaField.innerText = brojDecimala;
+
+function changeTheme() {
+    if (tema == 1) {
+        $(body).addClass('background2');
+        $('.Dtitle').addClass('decimale_title2');
+        tema = 2;
+    }
+    else {
+        $(body).removeClass('background2');
+        $('.Dtitle').removeClass('decimale_title2');
+        tema = 1;
+    }
+
+
+}
 
 function power() {
     broj = inputField.innerText;
@@ -95,12 +110,13 @@ function korijen() {
     else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '.') {
 
         if (last_op == '+') {
+            broj = Math.sqrt(broj);
             rezultat += broj;
 
             // console.log("KORIJEN SABRO");
 
         } else if (last_op == '*') {
-
+            broj = Math.sqrt(broj);
             rezultat *= broj;
 
             // console.log("KORIJEN POMNOZIO");
@@ -111,10 +127,12 @@ function korijen() {
                 erorNula();
                 return;
             }
+            broj = Math.sqrt(broj);
             rezultat /= broj;
             // console.log("KORIJEN PODIJELIO");
 
         } else if (last_op == '-') {
+            broj = Math.sqrt(broj);
             rezultat -= broj;
 
             // console.log("KORIJEN ODUZEO");
@@ -125,8 +143,10 @@ function korijen() {
         broj = rezultat;
 
 
+    } else {
+        rezultat = Math.sqrt(broj);
+
     }
-    rezultat = Math.sqrt(broj);
     rezultat = parseFloat(rezultat).toFixed(brojDecimala);
     inputField.innerText = rezultat + "√";
 
@@ -182,22 +202,18 @@ function DEL() {
 }
 function jednakoFunkcija(dugme) {
     if (inputField.innerText == '1318') {
-        $(s2).each(function () {
-            $(this).addClass('dark');
-        })
+
         $('.container-grid button').each(function () {
-            $(this).addClass('darkviper');
+            $(this).addClass('button_darkviperau');
         })
-        $(body).addClass('au');
+        $(body).addClass('background_darkviperau');
     }
     if (inputField.innerText == '8131') {
-        $(s2).each(function () {
-            $(this).removeClass('dark');
-        })
+
         $('.container-grid button').each(function () {
-            $(this).removeClass('darkviper');
+            $(this).removeClass('button_darkviperau');
         })
-        $(body).removeClass('au');
+        $(body).removeClass('background_darkviperau');
     }
     if (inputField.innerText == '-' || inputField.innerText == '.') {
         return;

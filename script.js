@@ -1,18 +1,26 @@
 const body = document.querySelector("html");
 const inputField = document.querySelector("#input");
+const BinputField = document.querySelector("#Binput");
 const rezultatField = document.querySelector("#last_input");
+const BrezultatField = document.querySelector("#Blast_input");
+const binarniUi = document.querySelector(".binarniUi");
+const decimalniUi = document.querySelector(".decimalniUi");
 
 
 const allClearButton = document.querySelector("[data-all-clear]");
 const brojevibuttons = document.querySelectorAll("[data-number]");
+const brojeviButtonsB = document.querySelectorAll("[Bdata-number]");
 const operacije = document.querySelectorAll("[data-operation]");
+const Boperacije = document.querySelectorAll("[Bdata-operation]");
 const jednakoDugme = document.querySelector("[data-jednako]");
 const tackaDugme = document.querySelector("[data-tacka]");
 const delDugme = document.querySelector("[data-del]");
+const BdelDugme = document.querySelector("[Bdata-del]");
 const korijenDugme = document.querySelector("[data-korijen]");
 const brojDecimalaField = document.querySelector(".broj-decimala");
 const powerDugme = document.querySelector("[data-power]");
 const themeDugme = document.querySelector("[data-theme]");
+const binarniDugme = document.querySelector(".binarni");
 
 const eror = document.querySelector(".eror");
 const erorContainer = document.querySelector(".eror-container");
@@ -20,7 +28,7 @@ const h1 = document.querySelector("h1");
 const s2 = document.getElementsByClassName('span-two');
 
 
-let last_op, imaMinus = 1, rezultat = 0, broj, brojDecimala = 2, tema = 1;
+let last_op, imaMinus = 1, rezultat = 0, broj, brojDecimala = 2, tema = 1, isBinarni = 0;
 
 brojDecimalaField.innerText = brojDecimala;
 
@@ -35,8 +43,6 @@ function changeTheme() {
         $('.Dtitle').removeClass('decimale_title2');
         tema = 1;
     }
-
-
 }
 
 function power() {
@@ -196,10 +202,23 @@ function eskape() {
 
 }
 function DEL() {
-    inputField.innerText = inputField.innerText.toString().slice(0, -1);
-    // console.log("IZBRISAT ZADNJI");
-    delDugme.blur();
+    rezultat = 0;
+    broj = 0;
+    zadnji_broj = 0;
+    last_op = undefined;
+    rezultatField.innerText = '';
+    inputField.innerText = '';
+    allClearButton.blur();
 }
+function BDEL() {
+    rezultat = 0;
+    broj = 0;
+    zadnji_broj = 0;
+    last_op = undefined;
+    BrezultatField.innerText = '';
+    BinputField.innerText = '';
+}
+
 function jednakoFunkcija(dugme) {
     if (inputField.innerText == '1318') {
 
@@ -295,6 +314,37 @@ function jednakoFunkcija(dugme) {
     }
 
 }
+function BjednakoFunkcija(dugme) {
+    let result = BinputField.innerText;
+    operator = result.replace(/[0-9]/g, '');
+    result = result.split(new RegExp(/[+\-*/]/));
+
+    let num1 = result[0];
+    let num2 = result[1];
+
+    num1 = binaryToDecimal(num1);
+    num2 = binaryToDecimal(num2);
+
+    switch (operator) {
+        case '+':
+            value = num1 + num2;
+            break;
+        case '*':
+            value = num1 * num2;
+            break;
+        case '÷':
+            value = num1 / num2;
+            break;
+        case '-':
+            value = num1 - num2;
+            break;
+        default:
+            value = ''
+            break;
+    }
+    BinputField.innerText = decimalToBinary(value);
+
+}
 function pritisnuoBroj(dugme) {
     if (inputField.innerText == '0') {
         inputField.innerText = dugme.innerText;
@@ -310,6 +360,59 @@ function pritisnuoBroj(dugme) {
         // console.log("PITA");
     }
     // console.log(broj);
+    dugme.blur();
+}
+function BpritisnuoBroj(dugme) {
+    if (dugme == '+' || dugme == '-' || dugme == '*' || dugme == '÷') {
+        if ((BinputField.innerText.toString().substr(BinputField.innerText.length - 1) == '+' || BinputField.innerText.toString().substr(BinputField.innerText.length - 1) == '-' || BinputField.innerText.toString().substr(BinputField.innerText.length - 1) == '*' || BinputField.innerText.toString().substr(BinputField.innerText.length - 1) == '÷') || BinputField.innerText.length == undefined) return;
+    }
+    BinputField.innerText += dugme;
+    console.log();
+}
+
+
+function pritisnuoPlus(dugme) {
+    broj = inputField.innerText;
+    broj = parseFloat(broj);
+    rezultat = parseFloat(rezultat);
+    if ((inputField.innerText == '' || inputField.innerText == '.' || inputField.innerText == '-') && rezultatField.innerText == '') {
+        // console.log('NEMORE PLUS');
+        dugme.blur();
+        return;
+    } else if (rezultatField.innerText == '' && inputField.innerText != '' && inputField.innerText != '.' && inputField.innerText != '-') {
+        // console.log('prebacavamo broj u rezultat');
+        rezultat = broj;
+    }
+    else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') {
+
+        if (last_op == '-') {
+            rezultat -= broj;
+            // console.log("PLUS ODUZEO");
+        } else if (last_op == '*') {
+            rezultat *= broj;
+            // console.log("PLUS POMNOZIO");
+        } else if (last_op == '÷') {
+            if (broj == '0') {
+                erorNula();
+                return;
+            }
+            rezultat /= broj;
+            // console.log("PLUS PODIJELIO");
+        } else {
+            rezultat += broj;
+            // console.log("PLUS SABRO");
+
+        }
+
+    }
+    // console.log(rezultat, "prije");
+    rezultat = parseFloat(rezultat);
+    rezultat = parseFloat(rezultat).toFixed(brojDecimala);
+    // console.log(rezultat, "posle");
+    rezultatField.innerText = rezultat + '+';
+    inputField.innerText = '';
+
+    last_op = '+';
     dugme.blur();
 }
 function pritisnuoMinus(dugme) {
@@ -371,50 +474,6 @@ function pritisnuoMinus(dugme) {
     inputField.innerText = '';
 
     last_op = '-';
-    dugme.blur();
-}
-function pritisnuoPlus(dugme) {
-    broj = inputField.innerText;
-    broj = parseFloat(broj);
-    rezultat = parseFloat(rezultat);
-    if ((inputField.innerText == '' || inputField.innerText == '.' || inputField.innerText == '-') && rezultatField.innerText == '') {
-        // console.log('NEMORE PLUS');
-        dugme.blur();
-        return;
-    } else if (rezultatField.innerText == '' && inputField.innerText != '' && inputField.innerText != '.' && inputField.innerText != '-') {
-        // console.log('prebacavamo broj u rezultat');
-        rezultat = broj;
-    }
-    else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') {
-
-        if (last_op == '-') {
-            rezultat -= broj;
-            // console.log("PLUS ODUZEO");
-        } else if (last_op == '*') {
-            rezultat *= broj;
-            // console.log("PLUS POMNOZIO");
-        } else if (last_op == '÷') {
-            if (broj == '0') {
-                erorNula();
-                return;
-            }
-            rezultat /= broj;
-            // console.log("PLUS PODIJELIO");
-        } else {
-            rezultat += broj;
-            // console.log("PLUS SABRO");
-
-        }
-
-    }
-    // console.log(rezultat, "prije");
-    rezultat = parseFloat(rezultat);
-    rezultat = parseFloat(rezultat).toFixed(brojDecimala);
-    // console.log(rezultat, "posle");
-    rezultatField.innerText = rezultat + '+';
-    inputField.innerText = '';
-
-    last_op = '+';
     dugme.blur();
 }
 function pritisnuoPuta(dugme) {
@@ -499,6 +558,197 @@ function pritisnuoPodijeljeno(dugme) {
     last_op = '÷';
     // console.log('podijeljeno');
 }
+
+
+function BpritisnuoPlus(dugme) {
+    broj = inputField.innerText;
+    broj = parseFloat(broj);
+    rezultat = parseFloat(rezultat);
+    if ((inputField.innerText == '' || inputField.innerText == '.' || inputField.innerText == '-') && rezultatField.innerText == '') {
+        // console.log('NEMORE PLUS');
+        dugme.blur();
+        return;
+    } else if (rezultatField.innerText == '' && inputField.innerText != '' && inputField.innerText != '.' && inputField.innerText != '-') {
+        // console.log('prebacavamo broj u rezultat');
+        rezultat = broj;
+    }
+    else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') {
+
+        if (last_op == '-') {
+            rezultat -= broj;
+            // console.log("PLUS ODUZEO");
+        } else if (last_op == '*') {
+            rezultat *= broj;
+            // console.log("PLUS POMNOZIO");
+        } else if (last_op == '÷') {
+            if (broj == '0') {
+                erorNula();
+                return;
+            }
+            rezultat /= broj;
+            // console.log("PLUS PODIJELIO");
+        } else {
+            rezultat += broj;
+            // console.log("PLUS SABRO");
+
+        }
+
+    }
+    // console.log(rezultat, "prije");
+    rezultat = parseFloat(rezultat);
+    rezultat = parseFloat(rezultat).toFixed(brojDecimala);
+    // console.log(rezultat, "posle");
+    rezultatField.innerText = rezultat + '+';
+    inputField.innerText = '';
+
+    last_op = '+';
+    dugme.blur();
+}
+function BpritisnuoMinus(dugme) {
+    broj = inputField.innerText;
+    broj = parseFloat(broj);
+    rezultat = parseFloat(rezultat);
+    if (inputField.innerText == '') {
+        // console.log('MORE NEGATIVNI');
+        inputField.innerText += '-';
+        dugme.blur();
+        return;
+    } else if (inputField.innerText == '-') {
+        // console.log('NEMORE MINUS');
+        dugme.blur();
+        return;
+    }
+
+    else if (rezultatField.innerText == '' && inputField.innerText != '' && inputField.innerText != '.' && inputField.innerText != '-') {
+        // console.log('prebacavamo broj u rezultat');
+        rezultat = broj;
+
+    }
+
+
+    else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '.') {
+
+        if (last_op == '+') {
+            rezultat += broj;
+
+            // console.log("MINUS SABRO");
+
+        } else if (last_op == '*') {
+
+            rezultat *= broj;
+
+            // console.log("MINUS POMNOZIO");
+
+        } else if (last_op == '÷') {
+            if (broj == '0') {
+                erorNula();
+                return;
+            }
+            rezultat /= broj;
+            // console.log("MINUS PODIJELIO");
+
+        } else {
+            rezultat -= broj;
+
+            // console.log("MINUS ODUZEO");
+
+        }
+
+    }
+    // console.log(rezultat, "prije");
+
+    rezultat = parseFloat(rezultat).toFixed(brojDecimala);
+    // console.log(rezultat, "posle");
+    rezultatField.innerText = rezultat + '-';
+    inputField.innerText = '';
+
+    last_op = '-';
+    dugme.blur();
+}
+function BpritisnuoPuta(dugme) {
+    broj = inputField.innerText;
+    broj = parseFloat(broj);
+    rezultat = parseFloat(rezultat);
+    if ((inputField.innerText == '' || inputField.innerText == '.' || inputField.innerText == '-') && rezultatField.innerText == '') {
+        // console.log("NEMORE PUTA");
+        dugme.blur();
+        return;
+
+    }
+    else if (rezultatField.innerText == '' && inputField.innerText != '-' && inputField.innerText != '.') {
+        rezultat = broj;
+
+    } else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') {
+        if (last_op == '-') {
+            rezultat -= broj;
+            // console.log("PUTA ODUZEO");
+        } else if (last_op == '+') {
+            rezultat += broj;
+            // console.log("PUTA SABRO");
+        } else if (last_op == '÷') {
+            if (broj == '0') {
+                erorNula();
+                return;
+            }
+            rezultat /= broj;
+            // console.log("PUTA PODIJELIO");
+
+        } else {
+            rezultat *= broj;
+            // console.log("PUTA POMNOZIO");
+        }
+    }
+    // console.log(rezultat, "prije");
+
+    rezultat = parseFloat(rezultat).toFixed(brojDecimala);
+    // console.log(rezultat, "posle");
+    rezultatField.innerText = rezultat + '*';
+    inputField.innerText = '';
+    last_op = '*';
+    // console.log('puta');
+    // dugme.blur(); // ako ima dugme.blur onda ce da bude npr 5 * jednako = 0, a ovako samo nece nista da radi mislim da je ovako bolje
+}
+function BpritisnuoPodijeljeno(dugme) {
+    broj = inputField.innerText;
+    broj = parseFloat(broj);
+    rezultat = parseFloat(rezultat);
+    if ((inputField.innerText == '' || inputField.innerText == '.' || inputField.innerText == '-') && rezultatField.innerText == '') {
+        // console.log("NEMORE PODIJELJENO");
+        dugme.blur();
+        return;
+    }
+    else if (rezultatField.innerText == '' && inputField.innerText != '-' && inputField.innerText != '.') {
+        rezultat = broj;
+    } else if (rezultatField.innerText != '' && inputField.innerText != '' && inputField.innerText != '-' && inputField.innerText != '.') {
+        if (last_op == '-') {
+            rezultat -= broj;
+            // console.log("PODIJELJENO ODUZEO");
+        } else if (last_op == '+') {
+            rezultat += broj;
+            // console.log("PODIJELJENO SABRO");
+        } else if (last_op == '*') {
+            rezultat *= broj;
+            // console.log("PODIJELJENO POMNOZIO");
+        } else {
+            if (broj == '0') {
+                erorNula();
+                return;
+            }
+            rezultat /= broj;
+            // console.log("PODIJELJENO PODIJELIO");
+        }
+    }
+    // console.log(rezultat, "prije");
+
+    rezultat = parseFloat(rezultat).toFixed(brojDecimala);
+    // console.log(rezultat, "posle");
+    rezultatField.innerText = rezultat + '÷';
+    inputField.innerText = '';
+    last_op = '÷';
+    // console.log('podijeljeno');
+}
+
+
 function pritisnuoTacku() {
     if (inputField.innerText.includes('.') || inputField.innerText == '-') {
         return;
@@ -542,6 +792,39 @@ function checkKeyboard(e) {
 
 }
 
+function decimalToBinary(broj) {
+    let binary = [];
+    while (broj > 0) {
+        binary.push(broj % 2);
+        broj = Math.floor(broj / 2);
+    }
+    return binary.reverse().join('');
+}
+
+function binaryToDecimal(binary) {
+    let decimal = 0;
+    for (let i = 0; i < binary.length; i++) {
+        decimal += binary[i] * Math.pow(2, binary.length - i - 1);
+    }
+    return decimal;
+}
+function promijeniBinarni() {
+    if (isBinarni == 0) {
+
+        binarniDugme.innerText = "Binarni";
+        decimalniUi.style.display = "none";
+        binarniUi.style.display = "block";
+        isBinarni = 1;
+    }
+    else {
+        binarniDugme.innerText = "Decimalni";
+        decimalniUi.style.display = "block";
+        binarniUi.style.display = "none";
+        isBinarni = 0;
+    }
+
+}
+
 
 brojevibuttons.forEach(dugme => {
     dugme.addEventListener('click', () => {
@@ -550,6 +833,9 @@ brojevibuttons.forEach(dugme => {
 });
 delDugme.addEventListener('click', () => {
     DEL();
+});
+BdelDugme.addEventListener('click', () => {
+    BDEL();
 });
 operacije.forEach(dugme => {
     dugme.addEventListener('click', () => {
@@ -575,6 +861,7 @@ operacije.forEach(dugme => {
     })
 
 });
+
 tackaDugme.addEventListener('click', () => {
     pritisnuoTacku();
 });

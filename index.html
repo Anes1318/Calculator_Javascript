@@ -19,42 +19,74 @@
             <button onclick="ok()">OK</button>
         </dialog>
     </div>
-    <div class="container-grid">
-        <div class="screen">
-            <div id="last_input" class="rezultat"></div>
-            <div id="input" class="current-broj"></div>
+    <div class="decimalniUi">
+        <div class="container-grid">
+            <div class="screen">
+                <div id="last_input" class="rezultat"></div>
+                <div id="input" class="current-broj"></div>
+            </div>
+            <button data-all-clear class="span-two">AC</button>
+            <button data-del>DEL</button>
+            <button data-del>%</button>
+            <button onclick="power()" data-power>X<sup>2</sup></button>
+            <button data-del>()</button>
+            <button onclick="korijen()" class="korijen" data-korijen></button>
+            <button id="podijeljeno" data-operation>÷</button>
+            <button id="7" data-number>7</button>
+            <button id="8" data-number>8</button>
+            <button id="9" data-number>9</button>
+            <button id="puta" data-operation>*</button>
+            <button id="4" data-number>4</button>
+            <button id="5" data-number>5</button>
+            <button id="6" data-number>6</button>
+            <button id="plus" data-operation>+</button>
+            <button id="1" data-number>1</button>
+            <button id="2" data-number>2</button>
+            <button id="3" data-number>3</button>
+            <button id="minus" data-operation>-</button>
+            <button id="tema" data-theme onclick="changeTheme()">Tema</button>
+            <button id="0" data-number>0</button>
+            <button data-tacka>.</button>
+            <button data-jednako> =</button>
+
         </div>
-        <button data-all-clear class="span-two">AC</button>
-        <button data-del>DEL</button>
-        <button data-del>%</button>
-        <button onclick="power()" data-power>X<sup>2</sup></button>
-        <button data-del>()</button>
-        <button onclick="korijen()" class="korijen" data-korijen></button>
-        <button id="podijeljeno" data-operation>÷</button>
-        <button id="7" data-number>7</button>
-        <button id="8" data-number>8</button>
-        <button id="9" data-number>9</button>
-        <button id="puta" data-operation>*</button>
-        <button id="4" data-number>4</button>
-        <button id="5" data-number>5</button>
-        <button id="6" data-number>6</button>
-        <button id="plus" data-operation>+</button>
-        <button id="1" data-number>1</button>
-        <button id="2" data-number>2</button>
-        <button id="3" data-number>3</button>
-        <button id="minus" data-operation>-</button>
-        <button data-theme onclick="changeTheme()">DIK</button>
-        <button id="0" data-number>0</button>
-        <button data-tacka>.</button>
-        <button data-jednako> =</button>
+        <h2 class="Dtitle">BROJ DECIMALA</h2>
+        <div class="decimale-container">
+            <button class="ar-down" onclick="smanji()"> ← </button>
+            <div class="broj-decimala"></div>
+            <button class="ar-up" onclick="povecaj()"> → </button>
+        </div>
+    </div>
+    <div class="binarniUi">
+        <div class="binarni-container-grid">
+            <div class="Bscreen">
+                <div id="Blast_input" class="Brezultat"></div>
+                <div id="Binput" class="Bcurrent-broj"></div>
+            </div>
+            <button id="B0" Bdata-number onclick="BpritisnuoBroj('0')">0</button>
+            <button id="B1" Bdata-number onclick="BpritisnuoBroj('1')">1</button>
+            <button Bdata-del>AC</button>
+            <button Bdata-jednako onclick="BjednakoFunkcija()"> =</button>
+
+            <button id="Bplus" Bdata-operation onclick="BpritisnuoBroj('+')">+</button>
+            <button id="Bminus" Bdata-operation onclick="BpritisnuoBroj('-')">-</button>
+            <button id="Bputa" Bdata-operation onclick="BpritisnuoBroj('*')">*</button>
+            <button id="Bpodijeljeno" Bdata-operation onclick="BpritisnuoBroj('÷')">÷</button>
+
+
+
+
+
+
+
+
+        </div>
 
     </div>
-    <div class="decimale-container">
-        <h2 class="Dtitle">BROJ DECIMALA</h2>
-        <button class="ar-down" onclick="smanji()"> ← </button>
-        <div class="broj-decimala"></div>
-        <button class="ar-up" onclick="povecaj()"> → </button>
+    <div class="binarni-container">
+        <button class="binarni" onclick="promijeniBinarni()"> Decimalni </button>
     </div>
+
 
 
     <script src="script.js"></script>

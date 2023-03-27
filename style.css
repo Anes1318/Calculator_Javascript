@@ -95,12 +95,14 @@ body {
 }
 
 /* dugmat */
-
+#tema {
+    font-size: 1.7rem;
+}
 .container-grid {
     display: grid;
     justify-content: center;
     align-content: center;
-    margin-top: 2.5rem;
+    margin-top: 50px;
     grid-template-columns: repeat(4, 80px);
     grid-template-rows: minmax(120px, auto) repeat(6, 80px);
 }
@@ -116,7 +118,7 @@ body {
     grid-column: span 2;
 }
 .korijen {
-    background-image: url(ikonica_korijen.png);
+    background-image: url(/img/ikonica_korijen.png);
     background-size: 70px 70px;
     padding: 30px;
     background-repeat: no-repeat;
@@ -138,16 +140,12 @@ body {
 /* decimale */
 
 .decimale-container {
-    display: grid;
+    display: flex;
     justify-content: center;
-    align-content: center;
-
-    grid-template-columns: repeat(4, 50px);
 }
 .Dtitle {
     color: white;
-
-    grid-column: span 4;
+    text-align: center;
 }
 .ar-up:hover {
     cursor: pointer;
@@ -160,20 +158,18 @@ body {
     border: none;
     background: rgb(75, 138, 255);
     font-size: 1.8rem;
-    margin-bottom: 6px;
-    margin-left: 30%;
+
     width: fit-content;
 }
 
 .broj-decimala {
     text-align: center;
     border-radius: 7px;
-    margin-left: 45%;
     background: rgb(75, 138, 255);
     font-size: 1.8rem;
-    margin-bottom: 6px;
-
-    width: 2rem;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 40px;
 }
 
 .ar-down {
@@ -183,16 +179,93 @@ body {
     border: none;
     background: rgb(75, 138, 255);
     font-size: 1.8rem;
-    margin-bottom: 6px;
 
     width: fit-content;
-    margin-left: 40%;
 }
 
 .ar-down:hover {
     cursor: pointer;
 }
+.binarni-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.binarni {
+    border-radius: 7px;
+    outline: none;
+    box-sizing: border-box;
+    border: none;
+    background: rgb(75, 138, 255);
+    font-size: 1.8rem;
 
+    width: fit-content;
+}
+
+.binarniUi {
+    display: none;
+}
+.Bscreen {
+    border-radius: 20px 20px 0 0;
+    outline: 0.1px solid black;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    min-height: 150px;
+    word-wrap: break-word;
+    word-break: break-all;
+    width: 100%;
+    grid-column: 1 / -1; /* stavlja ovo u poslednji column*/
+    background-color: rgb(75, 138, 255);
+}
+.Brezultat {
+    padding-top: 10px;
+    padding-right: 15px;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1);
+}
+
+.Bcurrent-broj {
+    outline: none;
+    border-radius: 5px;
+    overflow: visible;
+    text-align: right;
+    color: black;
+    font-weight: 600;
+    width: 400px;
+    font-size: 2.5rem;
+}
+
+.binarni-container-grid {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    margin-top: 50px;
+    grid-template-columns: repeat(4, 80px);
+    grid-template-rows: minmax(120px, auto) repeat(2, 80px);
+}
+.binarni-container-grid > button {
+    cursor: pointer;
+    font-size: 2rem;
+    color: white;
+    outline: 0.1px solid black;
+    border: none;
+    background-color: rgb(127, 128, 131);
+}
+@media (hover: none) {
+    .binarni-container-grid > button:active {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+@media (hover: hover) {
+    .binarni-container-grid > button:hover {
+        background-color: rgba(127, 128, 131, 0.5);
+    }
+}
 /* druga tema */
 .background2 {
     position: absolute;
@@ -208,7 +281,7 @@ body {
 /* ister eg */
 
 .button_darkviperau:hover {
-    background-image: url(brave_mBtwB4mBxj.png) !important;
+    background-image: url(/img/brave_mBtwB4mBxj.png) !important;
     background-size: 80px 80px, cover !important;
 }
 
@@ -218,7 +291,7 @@ body {
     background-color: white;
     min-height: 100vh;
     width: 100vw;
-    background-image: url(brave_mBtwB4mBxj.png) !important;
+    background-image: url(/img/brave_mBtwB4mBxj.png) !important;
     background-repeat: no-repeat !important;
     background-size: 100vw 100vh !important;
 }
